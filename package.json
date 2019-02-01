@@ -1,0 +1,20 @@
+{
+  "name": "pxgrid-node",
+  "version": "1.0.0",
+  "description": "A node library for the Cisco pxGrid 2.0 web socket based-service.",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "dev": "nodemon index.js"
+  },
+  "author": "Ryan Wolfe",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.4",
+    "websocket": "^1.0.28"
+  }
+}
