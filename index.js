@@ -10,8 +10,11 @@ const caBundle = fs.readFileSync(certPath + 'ise24.demo.local_10.1.100.23.cer');
 const pxgrid = new PxgridControl('ise24.demo.local', 'pxpython', clientCert, clientKey, caBundle);
 const client = new PxgridRestClient(pxgrid);
 
-const callback = function(message) {
-  console.log("NEW MESSAGE: " + message);
+const callback = function (message) {
+  console.log("NEW MESSAGE: " + message.body);
+  // must use JSON.parse to use as a JS object
+  const body = JSON.parse(message.body);
+  console.log("Endpoint " + body.macAddress + " has had an " + body.status + " ANC event");
 }
 function main() {
   pxgrid.getConfig();
