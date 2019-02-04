@@ -10,12 +10,20 @@ const caBundle = fs.readFileSync(certPath + 'ise24.demo.local_10.1.100.23.cer');
 const pxgrid = new PxgridControl('ise24.demo.local', 'pxpython', clientCert, clientKey, caBundle);
 const client = new PxgridRestClient(pxgrid);
 
-const callback = function (message) {
-  console.log("NEW MESSAGE: " + message.body);
+const ancCallback = function (message) {
+  //console.log("NEW MESSAGE: " + message.body);
   // must use JSON.parse to use as a JS object
   const body = JSON.parse(message.body);
   console.log("Endpoint " + body.macAddress + " has had an " + body.status + " ANC event");
 }
+
+const genericCallback = function (message) {
+  //console.log("NEW MESSAGE: " + message.body);
+  // must use JSON.parse to use as a JS object
+  const body = JSON.parse(message.body);
+  console.log(body);
+}
+
 function main() {
   pxgrid.getConfig();
   console.log('main is ready');
@@ -25,14 +33,19 @@ function main() {
   //client.getAncPolicies()
   //  .then(policies => console.log('POLICIES: ' + JSON.stringify(policies)));
 
-  client._getPubsubService()
+  client.getSessions()
+    .then(response => console.log(response));
+
+  client.getAncPolicies()
     .then(response => console.log(response));
 
   client.connectToBroker()
     .then(session => {
       session.activate();
       setTimeout(() => {
-        client.subscribeToAncPolicies(session, callback);
+        client.subscribeToAncPolicies(session, ancCallback);
+        client.subscribeToSessions(session, genericCallback);
+        client.subscribeToGroups(session, genericCallback);
       }, 1500);
     });
 }
