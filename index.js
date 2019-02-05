@@ -75,7 +75,7 @@ function main() {
   pxclient.getSystemPerformance().then(data => console.log(data));
   */
 
-  pxclient.connectToBroker(true)
+  pxclient.connectToBroker()
     .then(session => {
       session.activate();
       setTimeout(() => {
