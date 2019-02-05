@@ -1,6 +1,7 @@
 // This file is just a testing playground for all
 // the pxgrid - control / client lib functions!
 const fs = require('fs');
+const nodeCleanup = require('node-cleanup');
 
 const PxgridControl = require('./lib/pxgrid-control');
 const PxgridRestClient = require('./lib/pxgrid-client');
@@ -78,7 +79,7 @@ function main() {
     .then(session => {
       session.activate();
       setTimeout(() => {
-        //pxclient.subscribeToEndpointAsset(session, genericCallback);
+        pxclient.subscribeToEndpointAsset(session, genericCallback);
         /*
         pxclient.subscribeToAncPolicies(session, ancCallback);
         pxclient.subscribeToSessions(session, genericCallback);
@@ -98,9 +99,26 @@ function main() {
           .then(() => {
             console.log('PUBLISHER ESTABLISHED');
             const body = {
-              "assetMacAddress": "11:00:00:00:00:01",
+              "assetId": "260",
+              "assetName": "Abjergaryn - 47",
+              "assetHwRevision": "5.6",
+              "assetProtocol": "CIP",
+              "assetVendor": "Cisco Systems",
+              "assetSwRevision": "4.6",
+              "assetProductId": "IE2000",
+              "assetSerialNumber": "1212121213243",
+              "assetMacAddress": "11:00:00:00:00:04",
               "assetDeviceType": "Ryan Wolfe's Special Device",
+              "assetIpAddress": "1.2.3.4",
+              "assetCustomAttributes": [
+                {
+                  "value": "SuperDevice",
+                  "key": "WolfeAttr"
+                }
+              ],
+              "assetConnectedLinks": []
             };
+
             pxclient.publishEndpointAssetUpdate(session, body)
           });
       }, 3000);
