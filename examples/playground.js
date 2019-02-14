@@ -1,17 +1,12 @@
 // This file is just a testing playground for all
 // the pxgrid - control / client lib functions!
-const fs = require('fs');
-const nodeCleanup = require('node-cleanup');
+// aka a total free for all!
+const certs = require('./certs.js');
 
-const PxgridControl = require('./lib/pxgrid-control');
-const PxgridRestClient = require('./lib/pxgrid-client');
+const PxgridControl = require('../lib/pxgrid-control');
+const PxgridRestClient = require('../lib/pxgrid-client');
 
-const certPath = '../pxgrid-rest-ws/python/certs/';
-const clientCert = fs.readFileSync(certPath + 'publiccert.cer');
-const clientKey = fs.readFileSync(certPath + 'key.pem');
-const caBundle = fs.readFileSync(certPath + 'ise24.demo.local_10.1.100.23.cer');
-
-const pxgrid = new PxgridControl('ise24.demo.local', 'pxpython', clientCert, clientKey, caBundle);
+const pxgrid = new PxgridControl('ise24.demo.local', 'pxpython', certs.clientCert, certs.clientKey, certs.caBundle);
 const pxclient = new PxgridRestClient(pxgrid);
 
 const ancCallback = function (message) {
@@ -74,12 +69,12 @@ function main() {
   pxclient.getSystemHealth().then(data => console.log(data));
   pxclient.getSystemPerformance().then(data => console.log(data));
   */
-
+/*
   pxclient.connectToBroker()
     .then(session => {
       session.activate();
       setTimeout(() => {
-        pxclient.subscribeToEndpointAsset(session, genericCallback);
+        //pxclient.subscribeToEndpointAsset(session, genericCallback);
         /*
         pxclient.subscribeToAncPolicies(session, ancCallback);
         pxclient.subscribeToSessions(session, genericCallback);
@@ -91,7 +86,6 @@ function main() {
         pxclient.subscribeToSecurityGroups(session, genericCallback);
         pxclient.subscribeToSxpBindings(session, genericCallback);
         pxclient.subscribeToEndpointAsset(session, genericCallback);
-        */
       }, 1500);
 
       setTimeout(() => {
@@ -123,6 +117,8 @@ function main() {
           });
       }, 3000);
     });
+  */
+  pxclient.getProfiles().then(profiles => console.log(profiles));
 
   /*
   setTimeout(() => {
