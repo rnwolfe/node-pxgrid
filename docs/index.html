@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="PxgridControl.html">PxgridControl</a><ul class='methods'><li data-type='method'><a href="PxgridControl.html#.autoServiceReregister">autoServiceReregister</a></li><li data-type='method'><a href="PxgridControl.html#.getAccessSecret">getAccessSecret</a></li><li data-type='method'><a href="PxgridControl.html#.isActivated">isActivated</a></li><li data-type='method'><a href="PxgridControl.html#.serviceLookup">serviceLookup</a></li><li data-type='method'><a href="PxgridControl.html#.serviceRegister">serviceRegister</a></li><li data-type='method'><a href="PxgridControl.html#.serviceReregister">serviceReregister</a></li><li data-type='method'><a href="PxgridControl.html#.serviceUnregister">serviceUnregister</a></li><li data-type='method'><a href="PxgridControl.html#.serviceUnregisterAll">serviceUnregisterAll</a></li></ul></li><li><a href="PxgridRestClient.html">PxgridRestClient</a><ul class='methods'><li data-type='method'><a href="PxgridRestClient.html#.applyAncToEndpointByIp">applyAncToEndpointByIp</a></li><li data-type='method'><a href="PxgridRestClient.html#.applyAncToEndpointByMac">applyAncToEndpointByMac</a></li><li data-type='method'><a href="PxgridRestClient.html#.clearAncFromEndpointByIp">clearAncFromEndpointByIp</a></li><li data-type='method'><a href="PxgridRestClient.html#.clearAncFromEndpointByMac">clearAncFromEndpointByMac</a></li><li data-type='method'><a href="PxgridRestClient.html#.createAncPolicy">createAncPolicy</a></li><li data-type='method'><a href="PxgridRestClient.html#.deleteAncPolicy">deleteAncPolicy</a></li><li data-type='method'><a href="PxgridRestClient.html#.getAncEndpoints">getAncEndpoints</a></li><li data-type='method'><a href="PxgridRestClient.html#.getAncOperationStatus">getAncOperationStatus</a></li><li data-type='method'><a href="PxgridRestClient.html#.getAncPolicies">getAncPolicies</a></li><li data-type='method'><a href="PxgridRestClient.html#.getAncPolicyByName">getAncPolicyByName</a></li><li data-type='method'><a href="PxgridRestClient.html#.getEgressMatrices">getEgressMatrices</a></li><li data-type='method'><a href="PxgridRestClient.html#.getEgressPolicies">getEgressPolicies</a></li><li data-type='method'><a href="PxgridRestClient.html#.getMdmEndpointByMac">getMdmEndpointByMac</a></li><li data-type='method'><a href="PxgridRestClient.html#.getMdmEndpoints">getMdmEndpoints</a></li><li data-type='method'><a href="PxgridRestClient.html#.getMdmEndpointsByOs">getMdmEndpointsByOs</a></li><li data-type='method'><a href="PxgridRestClient.html#.getMdmEndpointsByType">getMdmEndpointsByType</a></li><li data-type='method'><a href="PxgridRestClient.html#.getProfiles">getProfiles</a></li><li data-type='method'><a href="PxgridRestClient.html#.getRadiusFailureById">getRadiusFailureById</a></li><li data-type='method'><a href="PxgridRestClient.html#.getRadiusFailures">getRadiusFailures</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSecurityGroupAcls">getSecurityGroupAcls</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSecurityGroups">getSecurityGroups</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSessionByIp">getSessionByIp</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSessionByMac">getSessionByMac</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSessions">getSessions</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSxpBindings">getSxpBindings</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSystemHealth">getSystemHealth</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSystemPerformance">getSystemPerformance</a></li><li data-type='method'><a href="PxgridRestClient.html#.getUserGroupByUserName">getUserGroupByUserName</a></li><li data-type='method'><a href="PxgridRestClient.html#.getUserGroups">getUserGroups</a></li><li data-type='method'><a href="PxgridRestClient.html#getAncEndpointByMac">getAncEndpointByMac</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+    <section class="package">
+        <h3> </h3>		
+    </section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <section class="readme">
+        <article><h1>PxGrid-Node</h1><p>This is an under-development Node.js module for interacting with Cisco PxGrid 2.0 that uses REST and WebSockets along with a STOMP-based messaging protocol. You can read more about it <a href="https://developer.cisco.com/docs/pxgrid/#!introduction-to-pxgrid-2-0">on Cisco DevNet</a>.</p>
+<p>It has great performance improvements over using Cisco ISE's standard REST API, as well as the obvious benefits that come with a subscribe/publish model over a general pull model.</p>
+<h2>Documentation</h2><p>The short answer is - there isn't any. I will work on at least getting a quick start style write up here at some point when I expect this to be fully usable; however, for now you'll have to decipher my random <a href="examples/">examples</a> to get started.</p>
+<h2><strong>Warning</strong>: use at your own risk and/or peril.</h2><p>This is not a fully fletched, fully tested, fully functional, fully professional, or fully anything else module. I'm still working on getting it to a better state where I'm comfortable saying it is likely reliable; however, it's not there, yet, and I have only done limited testing for functionality testing.</p>
+<p>I have not integrated it into any projects to come across, and therefore fix, any real issues that may arise.</p>
+<p>Nevertheless, it is here for your consumption and harsh ridicule.</p></article>
+    </section>
+
+
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 23 2019 18:20:10 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

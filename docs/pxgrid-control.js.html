@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>pxgrid-control.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="PxgridControl.html">PxgridControl</a><ul class='methods'><li data-type='method'><a href="PxgridControl.html#.autoServiceReregister">autoServiceReregister</a></li><li data-type='method'><a href="PxgridControl.html#.getAccessSecret">getAccessSecret</a></li><li data-type='method'><a href="PxgridControl.html#.isActivated">isActivated</a></li><li data-type='method'><a href="PxgridControl.html#.serviceLookup">serviceLookup</a></li><li data-type='method'><a href="PxgridControl.html#.serviceRegister">serviceRegister</a></li><li data-type='method'><a href="PxgridControl.html#.serviceReregister">serviceReregister</a></li><li data-type='method'><a href="PxgridControl.html#.serviceUnregister">serviceUnregister</a></li><li data-type='method'><a href="PxgridControl.html#.serviceUnregisterAll">serviceUnregisterAll</a></li></ul></li><li><a href="PxgridRestClient.html">PxgridRestClient</a><ul class='methods'><li data-type='method'><a href="PxgridRestClient.html#.applyAncToEndpointByIp">applyAncToEndpointByIp</a></li><li data-type='method'><a href="PxgridRestClient.html#.applyAncToEndpointByMac">applyAncToEndpointByMac</a></li><li data-type='method'><a href="PxgridRestClient.html#.clearAncFromEndpointByIp">clearAncFromEndpointByIp</a></li><li data-type='method'><a href="PxgridRestClient.html#.clearAncFromEndpointByMac">clearAncFromEndpointByMac</a></li><li data-type='method'><a href="PxgridRestClient.html#.createAncPolicy">createAncPolicy</a></li><li data-type='method'><a href="PxgridRestClient.html#.deleteAncPolicy">deleteAncPolicy</a></li><li data-type='method'><a href="PxgridRestClient.html#.getAncEndpoints">getAncEndpoints</a></li><li data-type='method'><a href="PxgridRestClient.html#.getAncOperationStatus">getAncOperationStatus</a></li><li data-type='method'><a href="PxgridRestClient.html#.getAncPolicies">getAncPolicies</a></li><li data-type='method'><a href="PxgridRestClient.html#.getAncPolicyByName">getAncPolicyByName</a></li><li data-type='method'><a href="PxgridRestClient.html#.getEgressMatrices">getEgressMatrices</a></li><li data-type='method'><a href="PxgridRestClient.html#.getEgressPolicies">getEgressPolicies</a></li><li data-type='method'><a href="PxgridRestClient.html#.getMdmEndpointByMac">getMdmEndpointByMac</a></li><li data-type='method'><a href="PxgridRestClient.html#.getMdmEndpoints">getMdmEndpoints</a></li><li data-type='method'><a href="PxgridRestClient.html#.getMdmEndpointsByOs">getMdmEndpointsByOs</a></li><li data-type='method'><a href="PxgridRestClient.html#.getMdmEndpointsByType">getMdmEndpointsByType</a></li><li data-type='method'><a href="PxgridRestClient.html#.getProfiles">getProfiles</a></li><li data-type='method'><a href="PxgridRestClient.html#.getRadiusFailureById">getRadiusFailureById</a></li><li data-type='method'><a href="PxgridRestClient.html#.getRadiusFailures">getRadiusFailures</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSecurityGroupAcls">getSecurityGroupAcls</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSecurityGroups">getSecurityGroups</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSessionByIp">getSessionByIp</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSessionByMac">getSessionByMac</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSessions">getSessions</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSxpBindings">getSxpBindings</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSystemHealth">getSystemHealth</a></li><li data-type='method'><a href="PxgridRestClient.html#.getSystemPerformance">getSystemPerformance</a></li><li data-type='method'><a href="PxgridRestClient.html#.getUserGroupByUserName">getUserGroupByUserName</a></li><li data-type='method'><a href="PxgridRestClient.html#.getUserGroups">getUserGroups</a></li><li data-type='method'><a href="PxgridRestClient.html#getAncEndpointByMac">getAncEndpointByMac</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">pxgrid-control.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const http = require('axios');
+const https = require('https');
+
+const ACCOUNT_ACTIVATE_URL = '/AccountActivate';
+const SERVICE_LOOKUP_URL = '/ServiceLookup';
+const ACCESS_SECRET_URL = '/AccessSecret';
+const SERVICE_REGISTER_URL = '/ServiceRegister';
+const SERVICE_REREGISTER_URL = '/ServiceReregister';
+const SERVICE_UNREGISTER_URL = '/ServiceUnregister';
+
+/**
+ * @class PxgridControl
+ *
+ * @description Establishes a PxGrid Control connection. Generally passed to a PxGrid REST Client session.
+ * @constructor
+ * @param {Object.&lt;Options>} options
+ * @property {Object.&lt;Options>} options
+ *
+ * @see {@link https://github.com/cisco-pxgrid/pxgrid-rest-ws/wiki/ Cisco PxGrid 2.0 GitHub Wiki} for more information on the Cisco PxGrid 2.0 implementation.
+ *
+ * @example
+ *
+ * const fs = require('fs');
+ * certs = [];
+ * certs.certPath = './certs/';
+ * certs.clientCert = fs.readFileSync(certs.certPath + 'publiccert.cer');
+ * certs.clientKey = fs.readFileSync(certs.certPath + 'key.pem');
+ * certs.caBundle = fs.readFileSync(certs.certPath + 'caBundle.cer');
+ *
+ * const PxgridControl = require('pxgrid-control');
+ *
+ * const pxgridControlOptions = {
+ *   host: 'my-ise-server.domain.com',
+ *   client: 'node-pxgrid',
+ *   clientCert: certs.clientCert,
+ *   clientKey: certs.clientKey,
+ *   caBundle: certs.caBundle,
+ *   clientKeyPassword = false,
+ *   secret = '',
+ *   port = '8910'
+ * }
+ *
+ * const pxgrid = new PxgridControl(pxgridControlOptions);
+ */
+
+class PxgridControl {
+  constructor({
+    host,
+    client,
+    clientCert,
+    clientKey,
+    caBundle,
+    clientKeyPassword,
+    secret,
+    port})
+  {
+    this.config = {
+      hostname: host,
+      client: client,
+      port: port || '8910',
+      secret: secret || '',
+      clientCert: clientCert,
+      clientKey: clientKey,
+      clientKeyPassword: clientKeyPassword || false,
+      caBundle: caBundle,
+      baseUrl: 'https://' + host + ':' + port + '/pxgrid/control'
+    }
+
+    this.basicAuth = Buffer.from(this.config.client + ":" + this.config.secret).toString('base64');
+    const httpsOptions = {
+      cert: this.config.clientCert,
+      key: this.config.clientKey,
+      ca: this.config.caBundle,
+      rejectUnauthorized: false
+    };
+    if (this.config.clientKeyPassword) httpsOptions.passphrase = clientKeyPassword;
+
+    this.config.session = http.create({
+      baseURL: this.config.baseUrl,
+      headers: {
+        'Authorization': 'Basic ' + this.basicAuth,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      httpsAgent: new https.Agent(httpsOptions)
+    });
+
+    this.registeredServices = [];
+
+    if (!this.config.hostname || !this.config.client) {
+      throw new Error('Please define hostname and a Pxgrid client name befor connecting to the pxGrid server.');
+    }
+
+  }
+
+  _post(url, body, debug=false) {
+    return this.config.session.post(url, body)
+      .then(response => {
+        if (debug) {
+          console.debug('URL: ' + url);
+          console.debug('DATA: ' + JSON.stringify(response.data));
+        }
+        return response.data;
+      });
+  }
+
+  _accountActivate(accountDesc = 'pxgrid-node') {
+    const payload = { "description": accountDesc };
+    return this._post(ACCOUNT_ACTIVATE_URL, payload)
+      .catch(error => { throw new Error(error) });
+  }
+
+  /**
+   * Check if the PxGrid client is activated.
+   * @function isActivated
+   * @memberof PxgridControl
+   * @returns {Promise} True if the PxGrid account has been activated on the upstream PxGrid controller.
+   */
+  isActivated() {
+    return this._accountActivate()
+      .then(response => response.accountState === 'ENABLED' ? true : false)
+      .catch(error => { throw new Error(error) });
+  }
+
+  /**
+   * Looks up any nodes providing the serviceName.
+   * @function serviceLookup
+   * @memberof PxgridControl
+   * @param  {string} serviceName Name of the service to lookup.
+   * @returns {Promise} Returns a list of nodes providing the specified service, as well as their properties.
+   */
+  serviceLookup(serviceName) {
+    const payload = { "name": serviceName };
+    return this._post(SERVICE_LOOKUP_URL, payload)
+      .then(response => response.services[0]);
+  }
+
+  /**
+   * Register as a publisher to a service. This could be a new service, or an existing service.
+   * @function serviceRegister
+   * @memberof PxgridControl
+   * @param  {string} serviceName Name of the service to register for.
+   * @param  {Object} properties Properties of the service you are registering.
+   * @returns {Promise} The id and reregisterTimeMillis for the newly registered service.
+   */
+  serviceRegister(serviceName, properties) {
+    const payload = { name: serviceName, properties: properties };
+    return this._post(SERVICE_REGISTER_URL, payload)
+      .then(response => {
+        this.registeredServices[serviceName] = response.id;
+        return response;
+      })
+      .catch(error => console.log(error));
+  }
+
+  /**
+   * Reregister your node for a service. Services must reregister within the reregisterTimeMillis interval provided when initially registering.
+   * @function serviceReregister
+   * @memberof PxgridControl
+   * @see serviceRegister
+   * @param  {string} serviceId The ID of the service to reregister.
+   * @returns {Promise} Empty response from controller, if successful.
+   */
+  serviceReregister(serviceId) {
+    return this._post(SERVICE_REREGISTER_URL, { id: serviceId });
+  }
+
+  /**
+   * Automatically reregister a service at a given interval. Reregistration will occur 5 seconds prior to provided interval to prevent inadvertent timeouts.
+   * @function autoServiceReregister
+   * @memberof PxgridControl
+   * @see {@link serviceReregister}
+   * @param {string} serviceId The ID of the service to reregister.
+   * @param {number} interval Interval to reregister (milliseconds).
+   * @returns nothing
+   */
+  autoServiceReregister(serviceId, interval) {
+    setInterval(() => this.serviceReregister(serviceId), interval-5000);
+  }
+
+  /**
+   * Unregisters a service.
+   * @function serviceUnregister
+   * @memberof PxgridControl
+   * @param {string} serviceId The ID of the service to unregister.
+   * @returns {Promise} Empty response from controller, if successful.
+   */
+  serviceUnregister(serviceId) {
+    return this._post(SERVICE_UNREGISTER_URL, { id: serviceId });
+  }
+
+  /**
+   * Unregisters all services that have been registered by the instance.
+   * @function serviceUnregisterAll
+   * @memberof PxgridControl
+   * @returns nothing
+   */
+  serviceUnregisterAll() {
+    this.registeredServices.forEach(service => {
+      this.serviceUnregister(service.id)
+        .then(response => console.log(response));
+    });
+  }
+
+  /**
+   * Gets the Access Secret for a given node. AccessSecret is a unique secret between a Consumer and Provider pair.
+   * @function getAccessSecret
+   * @memberof PxgridControl
+   * @param  {} nodeName
+   * @returns {Promise} Access Secret for node.
+   */
+  getAccessSecret(nodeName) {
+    const payload = { "peerNodeName": nodeName };
+    return this._post(ACCESS_SECRET_URL, payload);
+  }
+
+  getConfig() {
+    return this.config;
+  }
+}
+
+module.exports = PxgridControl;</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 23 2019 18:20:10 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
