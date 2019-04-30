@@ -5,14 +5,12 @@ const PxgridControl = require('../lib/pxgrid-control');
 const PxgridRestClient = require('../lib/pxgrid-client');
 
 const pxgridControlOptions = {
-  host: 'ise24.demo.local',
-  client: 'pxpython',
+  host: 'dnaise.ironbowlab.com',
+  client: 'my-node-app',
   clientCert: certs.clientCert,
   clientKey: certs.clientKey,
   caBundle: certs.caBundle,
-  clientKeyPassword = false,
-  secret = '',
-  port = '8910'
+  clientKeyPassword: 'Pxgrid123'
 }
 const pxgrid = new PxgridControl(pxgridControlOptions);
 const pxclient = new PxgridRestClient(pxgrid);

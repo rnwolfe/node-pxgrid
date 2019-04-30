@@ -170,9 +170,9 @@ const pxgridControlOptions = {
   clientCert: certs.clientCert,
   clientKey: certs.clientKey,
   caBundle: certs.caBundle,
-  clientKeyPassword = false,
-  secret = '',
-  port = '8910'
+  clientKeyPassword: false,
+  secret: '',
+  port: '8910'
 }
 
 const pxgrid = new PxgridControl(pxgridControlOptions);
@@ -294,7 +294,7 @@ pxgrid.isActivated()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line539">line 539</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line548">line 548</a>
     </li></ul></dd>
     
 
@@ -475,7 +475,7 @@ pxgrid.isActivated()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line513">line 513</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line522">line 522</a>
     </li></ul></dd>
     
 
@@ -656,7 +656,7 @@ pxgrid.isActivated()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line552">line 552</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line561">line 561</a>
     </li></ul></dd>
     
 
@@ -837,7 +837,7 @@ pxgrid.isActivated()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line526">line 526</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line535">line 535</a>
     </li></ul></dd>
     
 
@@ -1006,7 +1006,7 @@ pxgrid.isActivated()
 
     
 
-    <h4 class="name" id="connectToBroker"><span class="type-signature"></span>connectToBroker<span class="signature">(debug<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="connectToBroker"><span class="type-signature"></span>connectToBroker<span class="signature">(debug<span class="signature-attributes">opt</span>, waitPeriod<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1018,7 +1018,7 @@ pxgrid.isActivated()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line202">line 202</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line211">line 211</a>
     </li></ul></dd>
     
 
@@ -1080,12 +1080,7 @@ pxgrid.isActivated()
 
 function main() {
   pxclient.connectToBroker()
-    .then(session => {
-      session.activate();
-      setTimeout(() => {
-        pxclient.subscribeToAncPolicies(session, ancCallback);
-      }, 1500);
-    });
+    .then(session => pxclient.subscribeToAncPolicies(session, ancCallback));
 }
 
 pxgrid.isActivated()
@@ -1155,7 +1150,46 @@ pxgrid.isActivated()
                 </td>
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Enable debugging of publish/subscribe events going through the broker.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>waitPeriod</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>1500</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>(milliseconds) Period to wait to ensure activation is successful.</p></td>
         </tr>
 
     
@@ -1219,7 +1253,7 @@ pxgrid.isActivated()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line464">line 464</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line473">line 473</a>
     </li></ul></dd>
     
 
@@ -1400,7 +1434,7 @@ pxgrid.isActivated()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line773">line 773</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line788">line 788</a>
     </li></ul></dd>
     
 
@@ -1440,7 +1474,7 @@ pxgrid.isActivated()
 
 
 <div class="description">
-    <p>Creates a publisher for the Endpoint Asset service.</p>
+    <p>Creates a publisher for the Endpoint Asset service. This also registers the client as a publisher for the topic with the controller.</p>
 </div>
 
 
@@ -1509,7 +1543,7 @@ pxgrid.isActivated()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line477">line 477</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line486">line 486</a>
     </li></ul></dd>
     
 
@@ -1667,7 +1701,7 @@ pxgrid.isActivated()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line500">line 500</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line509">line 509</a>
     </li></ul></dd>
     
 
@@ -1825,7 +1859,7 @@ pxgrid.isActivated()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line488">line 488</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line497">line 497</a>
     </li></ul></dd>
     
 
@@ -1934,7 +1968,7 @@ pxgrid.isActivated()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line565">line 565</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line574">line 574</a>
     </li></ul></dd>
     
 
@@ -2093,7 +2127,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line439">line 439</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line448">line 448</a>
     </li></ul></dd>
     
 
@@ -2202,7 +2236,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line451">line 451</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line460">line 460</a>
     </li></ul></dd>
     
 
@@ -2360,7 +2394,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line690">line 690</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line699">line 699</a>
     </li></ul></dd>
     
 
@@ -2469,7 +2503,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line678">line 678</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line687">line 687</a>
     </li></ul></dd>
     
 
@@ -2578,7 +2612,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line386">line 386</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line395">line 395</a>
     </li></ul></dd>
     
 
@@ -2736,7 +2770,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line371">line 371</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line380">line 380</a>
     </li></ul></dd>
     
 
@@ -2921,7 +2955,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line413">line 413</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line422">line 422</a>
     </li></ul></dd>
     
 
@@ -3079,7 +3113,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line399">line 399</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line408">line 408</a>
     </li></ul></dd>
     
 
@@ -3237,7 +3271,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line339">line 339</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line349">line 349</a>
     </li></ul></dd>
     
 
@@ -3346,7 +3380,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line606">line 606</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line615">line 615</a>
     </li></ul></dd>
     
 
@@ -3504,7 +3538,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line591">line 591</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line600">line 600</a>
     </li></ul></dd>
     
 
@@ -3682,7 +3716,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line664">line 664</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line673">line 673</a>
     </li></ul></dd>
     
 
@@ -3860,7 +3894,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line649">line 649</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line658">line 658</a>
     </li></ul></dd>
     
 
@@ -4038,7 +4072,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line268">line 268</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line275">line 275</a>
     </li></ul></dd>
     
 
@@ -4196,7 +4230,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line280">line 280</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line287">line 287</a>
     </li></ul></dd>
     
 
@@ -4354,7 +4388,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line256">line 256</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line263">line 263</a>
     </li></ul></dd>
     
 
@@ -4463,7 +4497,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line710">line 710</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line722">line 722</a>
     </li></ul></dd>
     
 
@@ -4504,6 +4538,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
 
 <div class="description">
     <p>Get all TrustSec SXP bindings.</p>
+<p>Note: Results are only returned for IP SGT Static Mapping, and only if an SXP device is configured with the SXP service enabled. Otherwise, nothing is returned (even if mappings are configured).</p>
 </div>
 
 
@@ -4572,7 +4607,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line739">line 739</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line754">line 754</a>
     </li></ul></dd>
     
 
@@ -4824,7 +4859,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line756">line 756</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line771">line 771</a>
     </li></ul></dd>
     
 
@@ -5076,7 +5111,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line303">line 303</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line310">line 310</a>
     </li></ul></dd>
     
 
@@ -5234,7 +5269,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line291">line 291</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line298">line 298</a>
     </li></ul></dd>
     
 
@@ -5343,7 +5378,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line809">line 809</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line828">line 828</a>
     </li></ul></dd>
     
 
@@ -5381,6 +5416,12 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
 
 
 
+
+<div class="description">
+    <p>Publish an endpoint asset update.</p>
+<p>This allows the addition of attributes from the IOTAsset dictionary, as well as any pre-configured custom attributes, into the endpoint.</p>
+<p>Note: The Cisco ISE pxGrid Profiler Probe must be enabled for this published event to be processed by ISE. This is not on by default.</p>
+</div>
 
 
 
@@ -5936,7 +5977,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line579">line 579</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line588">line 588</a>
     </li></ul></dd>
     
 
@@ -6117,7 +6158,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line845">line 845</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line864">line 864</a>
     </li></ul></dd>
     
 
@@ -6298,7 +6339,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line328">line 328</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line338">line 338</a>
     </li></ul></dd>
     
 
@@ -6339,6 +6380,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
 
 <div class="description">
     <p>Subscribes to the groups topic.</p>
+<p>Note: During testing, this subscription did not appear to receive any data from create, update, delete operations on user/endpoint identity groups, or adding/removing users from an identity group.</p>
 </div>
 
 
@@ -6479,7 +6521,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line428">line 428</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line437">line 437</a>
     </li></ul></dd>
     
 
@@ -6660,7 +6702,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line355">line 355</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line364">line 364</a>
     </li></ul></dd>
     
 
@@ -6701,8 +6743,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
 
 <div class="description">
     <p>Subscribes to the profiles topic.</p>
-<p>Note: this topic doesn't appear to emit any data when an endpoint changes profile,
-or when a profile is created/deleted.</p>
+<p>Note: This topic only emits events when an endpoint profile is created or deleted. It doesn't emit anything when an endpoint changes profile.</p>
 </div>
 
 
@@ -6843,7 +6884,7 @@ or when a profile is created/deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line620">line 620</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line629">line 629</a>
     </li></ul></dd>
     
 
@@ -7024,7 +7065,7 @@ or when a profile is created/deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line316">line 316</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line323">line 323</a>
     </li></ul></dd>
     
 
@@ -7205,7 +7246,7 @@ or when a profile is created/deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line723">line 723</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line738">line 738</a>
     </li></ul></dd>
     
 
@@ -7246,6 +7287,7 @@ or when a profile is created/deleted.</p>
 
 <div class="description">
     <p>Subscribes to the SXP bindings topic.</p>
+<p>Note: During testing, this topic did not emit any events for new SXP bindings (IP-SGT Mappings) or new SXP connections.</p>
 </div>
 
 
@@ -7386,7 +7428,7 @@ or when a profile is created/deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line636">line 636</a>
+        <a href="pxgrid-client.js.html">pxgrid-client.js</a>, <a href="pxgrid-client.js.html#line645">line 645</a>
     </li></ul></dd>
     
 
@@ -7571,7 +7613,7 @@ or when a profile is created/deleted.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Apr 25 2019 19:31:47 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 30 2019 13:45:24 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

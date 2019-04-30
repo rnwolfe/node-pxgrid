@@ -1,9 +1,9 @@
 const fs = require('fs');
 
 certs = [];
-certs.certPath = '../../pxgrid-rest-ws/python/certs/';
-certs.clientCert = fs.readFileSync(certs.certPath + 'publiccert.cer');
-certs.clientKey = fs.readFileSync(certs.certPath + 'key.pem');
-certs.caBundle = fs.readFileSync(certs.certPath + 'ise24.demo.local_10.1.100.23.cer');
+certs.certPath = './certs/';
+certs.clientCert = fs.readFileSync(certs.certPath + 'my-node-app.cer');
+certs.clientKey = fs.readFileSync(certs.certPath + 'my-node-app.key');
+certs.caBundle = fs.readFileSync(certs.certPath + 'ise-chain.cer');
 
 module.exports = certs;

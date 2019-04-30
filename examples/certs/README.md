@@ -1,0 +1,1 @@
+This directory serves only to preserve the directory structure for the examples. The actually certificate files should be generated from your Cisco ISE pxGrid Controller.

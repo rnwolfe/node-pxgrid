@@ -3,3 +3,6 @@ node_modules/
 .DS_Store
 .env
 keys.js
+
+examples/certs/*
+!examples/certs/README.md

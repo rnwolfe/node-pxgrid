@@ -2,6 +2,15 @@
   "tags": {
       "allowUnknownTags": false
   },
+  "templates": {
+    "default": {
+      "staticFiles": {
+        "include": [
+            "./assets/static"
+        ]
+      }
+    }
+  },
   "source": {
       "include": ["./README.md", "./lib"],
       "includePattern": ".js$",

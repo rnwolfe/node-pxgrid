@@ -102,9 +102,9 @@ const ENDPOINT_ASSET_SERVICE = 'com.cisco.endpoint.asset';
  *   clientCert: certs.clientCert,
  *   clientKey: certs.clientKey,
  *   caBundle: certs.caBundle,
- *   clientKeyPassword = false,
- *   secret = '',
- *   port = '8910'
+ *   clientKeyPassword: false,
+ *   secret: '',
+ *   port: '8910'
  * }
  *
  * const pxgrid = new PxgridControl(pxgridControlOptions);
@@ -211,6 +211,19 @@ class PxgridRestClient {
     return new WebSocket(pubsubService.properties.wsUrl, socketOptions);
   }
 
+  _getTopicSubscriber(stompClient, topic, messageCallback) {
+    const parseAndCallback = function (frame) {
+      const message = Object.assign({}, frame)
+      if (message.isBinaryBody) {
+        message.body = JSON.parse(String.fromCharCode.apply(null, message._binaryBody));
+      } else {
+        message.body = JSON.parse(message.body);
+      }
+      messageCallback(message);
+    }
+    return stompClient.subscribe(topic, parseAndCallback);
+  }
+
   /**
    * Creates a STOMP client over a Web Socket connection to the PxGrid Controller. This returned client object can be passed to subscribe/publish function to enable pub/sub functionality.
    *
@@ -218,7 +231,8 @@ class PxgridRestClient {
    *
    * This may change in the future for better usage (e.g. wait period executed within connectToBroker()).
    *
-   * @param {boolean} [debug=false]
+   * @param {boolean} [debug=false] Enable debugging of publish/subscribe events going through the broker.
+   * @param {number} [waitPeriod=1500] (milliseconds) Period to wait to ensure activation is successful.
    * @returns {Promise} A STOMP client object.
    * @memberof PxgridRestClient
    *
@@ -230,12 +244,7 @@ class PxgridRestClient {
    *
    * function main() {
    *   pxclient.connectToBroker()
-   *     .then(session => {
-   *       session.activate();
-   *       setTimeout(() => {
-   *         pxclient.subscribeToAncPolicies(session, ancCallback);
-   *       }, 1500);
-   *     });
+   *     .then(session => pxclient.subscribeToAncPolicies(session, ancCallback));
    * }
    *
    * pxgrid.isActivated()
@@ -278,15 +287,13 @@ class PxgridRestClient {
           console.log('Additional details: ' + frame.body);
         };
 
-        // client must be activated with client.activate() before subscribing
-        // could we possibly just do this in another then block?
+        return client;
+      })
+      .then(client => {
+        client.activate()
         return client;
       })
       .catch(error => { throw new Error(error) });
-  }
-
-  _getTopicSubscriber(stompClient, topic, messageCallback) {
-    return stompClient.subscribe(topic, messageCallback);
   }
 
 
@@ -363,6 +370,9 @@ class PxgridRestClient {
 
   /**
    * Subscribes to the groups topic.
+   *
+   * Note: During testing, this subscription did not appear to receive any data from create, update, delete operations on user/endpoint identity groups, or adding/removing users from an identity group.
+   *
    * @memberof PxgridRestClient
    * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {function(messageObject)} messageCallback - A callback function that handles the message coming in on a topic subscription.
@@ -388,8 +398,7 @@ class PxgridRestClient {
   /**
    * Subscribes to the profiles topic.
    *
-   * Note: this topic doesn't appear to emit any data when an endpoint changes profile,
-   * or when a profile is created/deleted.
+   * Note: This topic only emits events when an endpoint profile is created or deleted. It doesn't emit anything when an endpoint changes profile.
    * @memberof PxgridRestClient
    * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {function(messageObject)} messageCallback - A callback function that handles the message coming in on a topic subscription.
@@ -747,6 +756,9 @@ class PxgridRestClient {
   // TrustSec SXP
   /**
    * Get all TrustSec SXP bindings.
+   *
+   * Note: Results are only returned for IP SGT Static Mapping, and only if an SXP device is configured with the SXP service enabled. Otherwise, nothing is returned (even if mappings are configured).
+   * 
    * @memberof PxgridRestClient
    * @returns {Promise} An array of SXP binding objects.
    */
@@ -758,6 +770,9 @@ class PxgridRestClient {
 
   /**
    * Subscribes to the SXP bindings topic.
+   *
+   * Note: During testing, this topic did not emit any events for new SXP bindings (IP-SGT Mappings) or new SXP connections.
+   *
    * @memberof PxgridRestClient
    * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {function(messageObject)} messageCallback - A callback function that handles the message coming in on a topic subscription.
@@ -809,7 +824,7 @@ class PxgridRestClient {
 
   // Endpoint Asset Context-In
   /**
-   * Creates a publisher for the Endpoint Asset service.
+   * Creates a publisher for the Endpoint Asset service. This also registers the client as a publisher for the topic with the controller.
    * @memberof PxgridRestClient
    * @returns {Promise} A status object.
    */
@@ -827,7 +842,11 @@ class PxgridRestClient {
   }
 
   /**
+   * Publish an endpoint asset update.
    *
+   * This allows the addition of attributes from the IOTAsset dictionary, as well as any pre-configured custom attributes, into the endpoint.
+   *
+   * Note: The Cisco ISE pxGrid Profiler Probe must be enabled for this published event to be processed by ISE. This is not on by default.
    *
    * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {Object} assetBody A JSON object of asset information to publish to an endpoint.
@@ -889,6 +908,20 @@ class PxgridRestClient {
     return this._getServiceWithSecret(ENDPOINT_ASSET_SERVICE)
       .then(service => this._getTopicSubscriber(stompClient, service.properties.assetTopic, messageCallback));
   }
+
+  // Subscribe to all topics
+  subscribeToAllTopics(stompClient, messageCallback) {
+    this.subscribeToAncPolicies(stompClient, messageCallback);
+    this.subscribeToEndpointAsset(stompClient, messageCallback);
+    this.subscribeToGroups(stompClient, messageCallback);
+    this.subscribeToMdmEndpoints(stompClient, messageCallback);
+    this.subscribeToProfiler(stompClient, messageCallback);
+    this.subscribeToRadiusFailures(stompClient, messageCallback);
+    this.subscribeToSecurityGroups(stompClient, messageCallback);
+    this.subscribeToSessions(stompClient, messageCallback);
+    this.subscribeToSxpBindings(stompClient, messageCallback);
+    this.subscribeToTrustSecPolicyDownloads(stompClient, messageCallback);
+  }
 }
 module.exports = PxgridRestClient;
 </code></pre>
@@ -905,7 +938,7 @@ module.exports = PxgridRestClient;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Apr 25 2019 19:31:47 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 30 2019 13:45:24 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
