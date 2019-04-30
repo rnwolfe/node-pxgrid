@@ -27,6 +27,6 @@ function main() {
   }, 6000);
 }
 
-pxgrid.isActivated()
+pxgrid.activate()
   .then(() => main());
 

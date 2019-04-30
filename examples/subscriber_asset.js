@@ -25,6 +25,6 @@ function main() {
     });
 }
 
-pxgrid.isActivated()
+pxgrid.activate()
   .then(() => main());
 

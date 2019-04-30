@@ -25,6 +25,6 @@ function main() {
     .then(session => pxclient.subscribeToAncPolicies(session, ancCallback));
 }
 
-pxgrid.isActivated()
+pxgrid.activate()
   .then(() => main());
 
