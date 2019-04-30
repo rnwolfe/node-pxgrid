@@ -3,8 +3,7 @@
 // aka a total free for all!
 const certs = require('./certs.js');
 
-const PxgridControl = require('../lib/pxgrid-control');
-const PxgridRestClient = require('../lib/pxgrid-client');
+const Pxgrid = require('../');
 
 const pxgridControlOptions = {
   host: 'dnaise.ironbowlab.com',
@@ -14,8 +13,8 @@ const pxgridControlOptions = {
   caBundle: certs.caBundle,
   clientKeyPassword: 'Pxgrid123',
 }
-const pxgrid = new PxgridControl(pxgridControlOptions);
-const pxclient = new PxgridRestClient(pxgrid);
+const pxgrid = new Pxgrid.Control(pxgridControlOptions);
+const pxclient = new Pxgrid.Client(pxgrid);
 
 const ancCallback = function (message) {
   //console.log(message)

@@ -1,5 +1,5 @@
 {
-  "name": "pxgrid-node",
+  "name": "node-pxgrid",
   "version": "1.0.0",
   "description": "A node library for the Cisco pxGrid 2.0 web socket based-service.",
   "main": "index.js",
@@ -24,11 +24,14 @@
     "ws",
     "stomp"
   ],
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rnwolfe/pxgrid-node.git"
+    "url": "git+https://github.com/rnwolfe/node-pxgrid.git"
   },
   "bugs": {
-    "url": "https://github.com/rnwolfe/pxgrid-node/issues"
+    "url": "https://github.com/rnwolfe/node-pxgrid/issues"
   }
 }

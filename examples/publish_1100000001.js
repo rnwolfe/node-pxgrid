@@ -19,6 +19,7 @@ function main() {
       pxclient.createEndpointAssetPublisher()
         .then(() => {
           console.log('PUBLISHER ESTABLISHED');
+          const deviceType = process.argv[2] || 'Test Device Type';
           const body = {
             "assetId": "260",
             "assetName": "Abjergaryn - 47",
@@ -29,18 +30,12 @@ function main() {
             "assetProductId": "IE2000",
             "assetSerialNumber": "1212121213243",
             "assetMacAddress": "11:00:00:00:00:01",
-            "assetDeviceType": "Ryan Wolfe's Special Device",
+            "assetDeviceType": deviceType,
             "assetIpAddress": "1.2.3.4",
-            "assetCustomAttributes": [
-              {
-                "value": "SuperDevice",
-                "key": "WolfeAttr"
-              }
-            ],
             "assetConnectedLinks": []
           };
 
-          pxclient.publishEndpointAssetUpdate(session, body)
+          pxclient.publishEndpointAssetUpdate(session, body);
         });
     });
 }

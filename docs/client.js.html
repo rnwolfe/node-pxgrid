@@ -1,4 +1,47 @@
-const http = require('axios');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>client.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Client.html">Client</a><ul class='methods'><li data-type='method'><a href="Client.html#applyAncToEndpointByIp">applyAncToEndpointByIp</a></li><li data-type='method'><a href="Client.html#applyAncToEndpointByMac">applyAncToEndpointByMac</a></li><li data-type='method'><a href="Client.html#clearAncFromEndpointByIp">clearAncFromEndpointByIp</a></li><li data-type='method'><a href="Client.html#clearAncFromEndpointByMac">clearAncFromEndpointByMac</a></li><li data-type='method'><a href="Client.html#connectToBroker">connectToBroker</a></li><li data-type='method'><a href="Client.html#createAncPolicy">createAncPolicy</a></li><li data-type='method'><a href="Client.html#createEndpointAssetPublisher">createEndpointAssetPublisher</a></li><li data-type='method'><a href="Client.html#deleteAncPolicy">deleteAncPolicy</a></li><li data-type='method'><a href="Client.html#getAncEndpointByMac">getAncEndpointByMac</a></li><li data-type='method'><a href="Client.html#getAncEndpoints">getAncEndpoints</a></li><li data-type='method'><a href="Client.html#getAncOperationStatus">getAncOperationStatus</a></li><li data-type='method'><a href="Client.html#getAncPolicies">getAncPolicies</a></li><li data-type='method'><a href="Client.html#getAncPolicyByName">getAncPolicyByName</a></li><li data-type='method'><a href="Client.html#getEgressMatrices">getEgressMatrices</a></li><li data-type='method'><a href="Client.html#getEgressPolicies">getEgressPolicies</a></li><li data-type='method'><a href="Client.html#getMdmEndpointByMac">getMdmEndpointByMac</a></li><li data-type='method'><a href="Client.html#getMdmEndpoints">getMdmEndpoints</a></li><li data-type='method'><a href="Client.html#getMdmEndpointsByOs">getMdmEndpointsByOs</a></li><li data-type='method'><a href="Client.html#getMdmEndpointsByType">getMdmEndpointsByType</a></li><li data-type='method'><a href="Client.html#getProfiles">getProfiles</a></li><li data-type='method'><a href="Client.html#getRadiusFailureById">getRadiusFailureById</a></li><li data-type='method'><a href="Client.html#getRadiusFailures">getRadiusFailures</a></li><li data-type='method'><a href="Client.html#getSecurityGroupAcls">getSecurityGroupAcls</a></li><li data-type='method'><a href="Client.html#getSecurityGroups">getSecurityGroups</a></li><li data-type='method'><a href="Client.html#getSessionByIp">getSessionByIp</a></li><li data-type='method'><a href="Client.html#getSessionByMac">getSessionByMac</a></li><li data-type='method'><a href="Client.html#getSessions">getSessions</a></li><li data-type='method'><a href="Client.html#getSxpBindings">getSxpBindings</a></li><li data-type='method'><a href="Client.html#getSystemHealth">getSystemHealth</a></li><li data-type='method'><a href="Client.html#getSystemPerformance">getSystemPerformance</a></li><li data-type='method'><a href="Client.html#getUserGroupByUserName">getUserGroupByUserName</a></li><li data-type='method'><a href="Client.html#getUserGroups">getUserGroups</a></li><li data-type='method'><a href="Client.html#publishEndpointAssetUpdate">publishEndpointAssetUpdate</a></li><li data-type='method'><a href="Client.html#subscribeToAncPolicies">subscribeToAncPolicies</a></li><li data-type='method'><a href="Client.html#subscribeToEndpointAsset">subscribeToEndpointAsset</a></li><li data-type='method'><a href="Client.html#subscribeToGroups">subscribeToGroups</a></li><li data-type='method'><a href="Client.html#subscribeToMdmEndpoints">subscribeToMdmEndpoints</a></li><li data-type='method'><a href="Client.html#subscribeToProfiler">subscribeToProfiler</a></li><li data-type='method'><a href="Client.html#subscribeToRadiusFailures">subscribeToRadiusFailures</a></li><li data-type='method'><a href="Client.html#subscribeToSessions">subscribeToSessions</a></li><li data-type='method'><a href="Client.html#subscribeToSxpBindings">subscribeToSxpBindings</a></li><li data-type='method'><a href="Client.html#subscribeToTrustSecPolicyDownloads">subscribeToTrustSecPolicyDownloads</a></li></ul></li><li><a href="Control.html">Control</a><ul class='methods'><li data-type='method'><a href="Control.html#activate">activate</a></li><li data-type='method'><a href="Control.html#autoServiceReregister">autoServiceReregister</a></li><li data-type='method'><a href="Control.html#getAccessSecret">getAccessSecret</a></li><li data-type='method'><a href="Control.html#serviceLookup">serviceLookup</a></li><li data-type='method'><a href="Control.html#serviceRegister">serviceRegister</a></li><li data-type='method'><a href="Control.html#serviceReregister">serviceReregister</a></li><li data-type='method'><a href="Control.html#serviceUnregister">serviceUnregister</a></li><li data-type='method'><a href="Control.html#serviceUnregisterAll">serviceUnregisterAll</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">client.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const http = require('axios');
 const https = require('https');
 const WebSocket = require('ws');
 const StompJs = require('@stomp/stompjs');
@@ -16,22 +59,22 @@ const PUBSUB_SERVICE = 'com.cisco.ise.pubsub';
 const ENDPOINT_ASSET_SERVICE = 'com.cisco.endpoint.asset';
 
 /**
- * @class PxgridRestClient
+ * @class Client
  *
  * @description Series of functions that allow easy interaction with Cisco PxGrid 2.0 protocol implementation (typically with a Cisco ISE PxGrid Controller).
  * @description PxGrid 2.0 makes use of REST API for push/pull options, and Web Sockets for messaging-style connections.
  * @description The web sockets use a STOMP-based messaging framework.
  * @constructor
- * @param {Object.<PxgridControl>} pxGridControl
+ * @param {Object.&lt;Control>} pxgridControl A configured instance of the Control class.
  *
- * @see {@link PxgridControl}
+ * @see {@link Control}
  * @see {@link https://github.com/cisco-pxgrid/pxgrid-rest-ws/wiki/ Cisco PxGrid 2.0 GitHub Wiki} for more information on the Cisco PxGrid 2.0 implementation.
  *
- * @example <caption>PxgridClient instance setup excluded.</caption>
- * const PxgridRestClient = require('pxgrid-client');
+ * @example &lt;caption>Control instance setup excluded.&lt;/caption>
+ * const Pxgrid = require('pxgrid-node');
  *
- * const pxgrid = new PxgridControl(pxgridControlOptions);
- * const pxclient = new PxgridRestClient(pxgridControlObject);
+ * const pxgrid = new Pxgrid.Control(pxgridControlOptions);
+ * const pxclient = new Pxgrid.Client(pxgridControlObject);
  *
  * pxgrid.activate()
  *   .then(() => {
@@ -42,16 +85,14 @@ const ENDPOINT_ASSET_SERVICE = 'com.cisco.endpoint.asset';
  *       .then(response => console.log(response));
  *   });
  *
- * @example <caption>Example including the PxgridClient instance setup.</caption>
+ * @example &lt;caption>Example including the Control instance setup.&lt;/caption>
  * const fs = require('fs');
- * const PxgridControl = require('../lib/pxgrid-control');
- * const PxgridRestClient = require('../lib/pxgrid-client');
+ * const Pxgrid = require('pxgrid-node');
  *
  * certs = [];
- * certs.certPath = './certs/';
- * certs.clientCert = fs.readFileSync(certs.certPath + 'publiccert.cer');
- * certs.clientKey = fs.readFileSync(certs.certPath + 'key.pem');
- * certs.caBundle = fs.readFileSync(certs.certPath + 'caBundle.cer');
+ * certs.clientCert = fs.readFileSync('./certs/publiccert.cer');
+ * certs.clientKey = fs.readFileSync('./certs/key.pem');
+ * certs.caBundle = fs.readFileSync('./certs/caBundle.cer');
  *
  * const pxgridControlOptions = {
  *   host: 'my-ise-server.domain.com',
@@ -60,14 +101,12 @@ const ENDPOINT_ASSET_SERVICE = 'com.cisco.endpoint.asset';
  *   clientKey: certs.clientKey,
  *   caBundle: certs.caBundle,
  *   clientKeyPassword: false,
- *   secret: '',
- *   port: '8910'
  * }
  *
- * const pxgrid = new PxgridControl(pxgridControlOptions);
- * const pxclient = new PxgridRestClient(pxgridControlObject);
+ * const pxcontrol = new Pxgrid.Control(pxgridControlOptions);
+ * const pxclient = new Pxgrid.Client(pxgridControlObject);
  *
- * pxgrid.activate()
+ * pxcontrol.activate()
  *   .then(() => {
  *     pxclient.getProfiles()
  *        .then(profiles => console.log(profiles));
@@ -77,7 +116,7 @@ const ENDPOINT_ASSET_SERVICE = 'com.cisco.endpoint.asset';
  *   });
  */
 
-class PxgridRestClient {
+class Client {
   constructor(pxgridControl) {
     this.pxgrid = pxgridControl;
     this.config = this.pxgrid.getConfig();
@@ -191,7 +230,7 @@ class PxgridRestClient {
    * @param {boolean} [debug=false] Enable debugging of publish/subscribe events going through the broker.
    * @param {number} [waitPeriod=1500] (milliseconds) Period to wait to ensure activation is successful.
    * @returns {Promise} A STOMP client object.
-   * @memberof PxgridRestClient
+   * @memberof Client
    *
    * @example
    * const ancCallback = function (message) {
@@ -257,7 +296,7 @@ class PxgridRestClient {
   // Session directory functions
   /**
    * Get all active sessions.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @returns {Promise} An array of session objects.
    */
   getSessions() {
@@ -268,7 +307,7 @@ class PxgridRestClient {
 
   /**
    * Get session information for a given IP address.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} ip IP address to lookup session for.
    * @returns {Promise} A session object.
    */
@@ -280,7 +319,7 @@ class PxgridRestClient {
 
   /**
    * Get session information for a given MAC address.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} mac MAC address to lookup session for.
    * @returns {Promise} A session object.
    */
@@ -292,7 +331,7 @@ class PxgridRestClient {
 
   /**
    * Gets all user groups.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @returns {Promise} An array of group objects.
    */
   getUserGroups() {
@@ -303,7 +342,7 @@ class PxgridRestClient {
 
   /**
    * Gets all groups a given username is a member of.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} name User name.
    * @returns {Promise} An array of group objects.
    */
@@ -315,8 +354,8 @@ class PxgridRestClient {
 
   /**
    * Subscribes to the sessions topic.
-   * @memberof PxgridRestClient
-   * @param {Object.<stompClient>} stompClient The active broker session to use for subscription.
+   * @memberof Client
+   * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {function(messageObject)} messageCallback - A callback function that handles the message coming in on a topic subscription.
    * @returns {Promise} A stomp subscriber object.
    */
@@ -330,8 +369,8 @@ class PxgridRestClient {
    *
    * Note: During testing, this subscription did not appear to receive any data from create, update, delete operations on user/endpoint identity groups, or adding/removing users from an identity group.
    *
-   * @memberof PxgridRestClient
-   * @param {Object.<stompClient>} stompClient The active broker session to use for subscription.
+   * @memberof Client
+   * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {function(messageObject)} messageCallback - A callback function that handles the message coming in on a topic subscription.
    * @returns {Promise} A stomp subscriber object.
    */
@@ -343,7 +382,7 @@ class PxgridRestClient {
   // Profiler
   /**
    * Get all endpoint profiles.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @returns {Promise} An array of endpoint profile objects.
    */
   getProfiles() {
@@ -356,8 +395,8 @@ class PxgridRestClient {
    * Subscribes to the profiles topic.
    *
    * Note: This topic only emits events when an endpoint profile is created or deleted. It doesn't emit anything when an endpoint changes profile.
-   * @memberof PxgridRestClient
-   * @param {Object.<stompClient>} stompClient The active broker session to use for subscription.
+   * @memberof Client
+   * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {function(messageObject)} messageCallback - A callback function that handles the message coming in on a topic subscription.
    * @returns {Promise} A stomp subscriber object.
    */
@@ -372,7 +411,7 @@ class PxgridRestClient {
   // I don't have MDM integrated with ISE, so unable to fully test some of these.
   /**
    * Gets MDM endpoints.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {boolean} [filter=false]
    * @see {@link https://github.com/cisco-pxgrid/pxgrid-rest-ws/wiki/MDM#endpoint-object PxGrid MDM Documentation} for endpoint object used for filter.
    * @returns {Promise} An array of MDM endpoint objects.
@@ -388,7 +427,7 @@ class PxgridRestClient {
 
   /**
    * Gets an MDM endpoints by MAC address.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} mac MAC address of MDM client to retrieve.
    * @returns {Promise} An MDM endpoint object.
    */
@@ -401,7 +440,7 @@ class PxgridRestClient {
 
   /**
    * Get an MDM endpoint by type.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} type Value must be 'NON_COMPLIANT', 'REGISTERED', or 'DISCONNECTED'
    * @returns {Promise} An array of MDM endpoint objects.
    */
@@ -415,7 +454,7 @@ class PxgridRestClient {
 
   /**
    * Get an MDM endpoint by OS type.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} osType Value must be 'ANDROID', 'IOS', or 'WINDOWS'.
    * @returns {Promise} An MDM endpoint object.
    */
@@ -429,8 +468,8 @@ class PxgridRestClient {
 
   /**
    * Subscribes to the MDM endpoints topic.
-   * @memberof PxgridRestClient
-   * @param {Object.<stompClient>} stompClient The active broker session to use for subscription.
+   * @memberof Client
+   * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {function(messageObject)} messageCallback - A callback function that handles the message coming in on a topic subscription.
    * @returns {Promise} A stomp subscriber object.
    */
@@ -442,7 +481,7 @@ class PxgridRestClient {
   // Adaptive Network Control (ANC)
   /**
    * Get all ANC policies.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @returns {Promise} An array of ANC policy objects.
    */
   getAncPolicies() {
@@ -453,7 +492,7 @@ class PxgridRestClient {
 
   /**
    * Gets an ANC policy details by name.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} name Name of an existing ANC policy.
    * @returns {Promise} An ANC policy object.
    */
@@ -465,7 +504,7 @@ class PxgridRestClient {
 
   /**
    * Create a new ANC policy.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} name The name of the new ANC policy.
    * @param {Object} actions Actions must be an array, and there must only be one item in the array. Acceptable values are 'QUARANTINE', 'SHUT_DOWN', 'PORT_BOUNCE'.
    * @returns {Promise} An ANC policy object.
@@ -479,7 +518,7 @@ class PxgridRestClient {
 
   /**
    * Deletes an ANC policy.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} name The name of the ANC policy to be deleted.
    * @returns {Promise} empty
    */
@@ -491,7 +530,7 @@ class PxgridRestClient {
 
   /**
    * Get all endpoints assigned an ANC policy.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @returns {Promise} An array of endpoint objects.
    */
   getAncEndpoints() {
@@ -502,7 +541,7 @@ class PxgridRestClient {
 
   /**
    * Get ANC policy for MAC address.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} mac MAC address of endpoint.
    * @returns {Promise} An ANC endpoint object.
    */
@@ -514,7 +553,7 @@ class PxgridRestClient {
 
   /**
    * Apply an ANC policy to an endpoint by MAC address.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} policy The name of the ANC policy to apply.
    * @param {string} mac The MAC address to apply the policy to.
    * @returns {Promise} A status object.
@@ -527,7 +566,7 @@ class PxgridRestClient {
 
   /**
    * Clears an ANC policy from an endpoint by MAC address.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} policy The name of the ANC policy to clear.
    * @param {string} mac The MAC address to clear the policy from.
    * @returns {Promise} A status object.
@@ -540,7 +579,7 @@ class PxgridRestClient {
 
   /**
    * Apply an ANC policy to an endpoint by IP address.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} policy The name of the ANC policy to apply.
    * @param {string} ip The IP address to apply the policy to.
    * @returns {Promise} A status object.
@@ -553,7 +592,7 @@ class PxgridRestClient {
 
   /**
    * Clears an ANC policy from an endpoint by IP address.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} policy The name of the ANC policy to clear.
    * @param {string} ip The IP address to clear the policy from.
    * @returns {Promise} A status object.
@@ -567,7 +606,7 @@ class PxgridRestClient {
   /**
    * The status of an ANC operation.
    * If operation does not exist, HTTP status "204 No content" will be returned.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} id An operation ID.
    * @returns {Promise} A status object.
    */
@@ -579,8 +618,8 @@ class PxgridRestClient {
 
   /**
    * Subscribes to the ANC policy topic. Messages generated for endpoints being applied or cleared from an ANC policy.
-   * @memberof PxgridRestClient
-   * @param {Object.<stompClient>} stompClient The active broker session to use for subscription.
+   * @memberof Client
+   * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {function(messageObject)} messageCallback - A callback function that handles the message coming in on a topic subscription.
    * @returns {Promise} A stomp subscriber object.
    */
@@ -593,7 +632,7 @@ class PxgridRestClient {
   // RADIUS
   /**
    * Get all RADIUS failures.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {number} [startTimestamp=false] If not specified, failures from the last hour will be returned.
    * @returns {Promise} An array of failure objects.
    */
@@ -608,7 +647,7 @@ class PxgridRestClient {
 
   /**
    * Get RADIUS failure by ID.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} id Failure ID.
    * @returns {Promise} A failure object.
    */
@@ -621,8 +660,8 @@ class PxgridRestClient {
 
   /**
    * Subscribes to the RADIUS failures topic.
-   * @memberof PxgridRestClient
-   * @param {Object.<stompClient>} stompClient The active broker session to use for subscription.
+   * @memberof Client
+   * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {function(messageObject)} messageCallback - A callback function that handles the message coming in on a topic subscription.
    * @returns {Promise} A stomp subscriber object.
    */
@@ -637,8 +676,8 @@ class PxgridRestClient {
    * Subscribes to the groups topic.
    *
    * Note: this service only provide status of SGACL downloads via subscription (as of ISE 2.4).
-   * @memberof PxgridRestClient
-   * @param {Object.<stompClient>} stompClient The active broker session to use for subscription.
+   * @memberof Client
+   * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {function(messageObject)} messageCallback - A callback function that handles the message coming in on a topic subscription.
    * @returns {Promise} A stomp subscriber object.
    */
@@ -651,7 +690,7 @@ class PxgridRestClient {
   // TrustSec Config
   /**
    * Get all Security Groups (SGTs).
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} [id=false]  Returns all if ID not specified.
    * @returns {Promise} An array of security group objects.
    */
@@ -666,7 +705,7 @@ class PxgridRestClient {
 
   /**
    * Get all security group ACLs (SGACLs).
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {string} [id=false] Returns all if ID not specified.
    * @returns {Promise} An array of SGACL objects.
    */
@@ -681,7 +720,7 @@ class PxgridRestClient {
 
   /**
    * Get all TrustSec egress policies.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @returns {Promise} An array of egress policy objects.
    */
   getEgressPolicies() {
@@ -693,7 +732,7 @@ class PxgridRestClient {
 
   /**
    * Get all TrustSec egress matrices.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @returns {Promise} An array of egress matrix objects.
    */
   getEgressMatrices() {
@@ -716,7 +755,7 @@ class PxgridRestClient {
    *
    * Note: Results are only returned for IP SGT Static Mapping, and only if an SXP device is configured with the SXP service enabled. Otherwise, nothing is returned (even if mappings are configured).
    *
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @returns {Promise} An array of SXP binding objects.
    */
   getSxpBindings() {
@@ -730,8 +769,8 @@ class PxgridRestClient {
    *
    * Note: During testing, this topic did not emit any events for new SXP bindings (IP-SGT Mappings) or new SXP connections.
    *
-   * @memberof PxgridRestClient
-   * @param {Object.<stompClient>} stompClient The active broker session to use for subscription.
+   * @memberof Client
+   * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {function(messageObject)} messageCallback - A callback function that handles the message coming in on a topic subscription.
    * @returns {Promise} A stomp subscriber object.
    */
@@ -744,7 +783,7 @@ class PxgridRestClient {
   // System health functions
   /**
    * Get system health events.
-   * @memberof PxgridRestClient
+   * @memberof Client
    *
    * @param {Object} options Options for filtering the system health events.
    * @param {string} [options.nodeName] The name of the node to get system health for. Will return all nodes if nodeName not specified.
@@ -762,7 +801,7 @@ class PxgridRestClient {
 
   /**
    * Get system performance events.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @param {Object} options Options for filtering the system performance.
    * @param {string} [options.nodeName] The name of the node to get system performance for. Will return all nodes if nodeName not specified.
    * @param {ISO8601Datetime} [options.startTimestamp] The timestamp to begin getting events with. Will return last hour if startTimestamp not specified.
@@ -782,7 +821,7 @@ class PxgridRestClient {
   // Endpoint Asset Context-In
   /**
    * Creates a publisher for the Endpoint Asset service. This also registers the client as a publisher for the topic with the controller.
-   * @memberof PxgridRestClient
+   * @memberof Client
    * @returns {Promise} A status object.
    */
   createEndpointAssetPublisher() {
@@ -805,7 +844,7 @@ class PxgridRestClient {
    *
    * Note: The Cisco ISE pxGrid Profiler Probe must be enabled for this published event to be processed by ISE. This is not on by default.
    *
-   * @param {Object.<stompClient>} stompClient The active broker session to use for subscription.
+   * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {Object} assetBody A JSON object of asset information to publish to an endpoint.
    * @param {string} assetBody.assetMacAddress MAC address of endpoint.
    * @param {string} assetBody.assetId Arbitrary value.
@@ -823,7 +862,7 @@ class PxgridRestClient {
    * @param {Object} assetBody.assetConnectedAttributes Any other custom attributes that have been created in Cisco ISE.
    * @param {string} assetBody.assetCustomAttributes.attrName attrName should match name of custom attribute in ISE. Value is arbitrary.
    * @param {boolean} [debug=false] If true, will enable debug messages being logged to console.
-   * @memberof PxgridRestClient
+   * @memberof Client
    */
   publishEndpointAssetUpdate(stompClient, assetBody, debug=false) {
     let binaryData;
@@ -856,8 +895,8 @@ class PxgridRestClient {
 
   /**
    * Subscribes to the Endpoint Asset topic.
-   * @memberof PxgridRestClient
-   * @param {Object.<stompClient>} stompClient The active broker session to use for subscription.
+   * @memberof Client
+   * @param {Object.&lt;stompClient>} stompClient The active broker session to use for subscription.
    * @param {function(messageObject)} messageCallback - A callback function that handles the message coming in on a topic subscription.
    * @returns {Promise} A stomp subscriber object.
    */
@@ -880,4 +919,29 @@ class PxgridRestClient {
     this.subscribeToTrustSecPolicyDownloads(stompClient, messageCallback);
   }
 }
-module.exports = PxgridRestClient;
+module.exports = Client;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 30 2019 16:41:18 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

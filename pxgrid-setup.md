@@ -44,8 +44,7 @@ Of course, you can do this in your app directly, or however you want. The key th
 ```js
 const certs = require('./certs.js');
 
-const PxgridControl = require('../lib/pxgrid-control');
-const PxgridRestClient = require('../lib/pxgrid-client');
+const Pxgrid = require('pxgrid-node');
 
 const pxgridControlOptions = {
   host: 'dnaise.ironbowlab.com',
@@ -55,8 +54,8 @@ const pxgridControlOptions = {
   caBundle: certs.caBundle,
   clientKeyPassword: 'Pxgrid123'
 }
-const pxgrid = new PxgridControl(pxgridControlOptions);
-const pxclient = new PxgridRestClient(pxgrid);
+const pxcontrol = new Pxgrid.Control(pxgridControlOptions);
+const pxclient = new Pxgrid.Client(pxcontrol);
 
 const ancCallback = function (message) {
   console.log("Endpoint " + body.macAddress + " has had an " + body.status + " ANC event");
@@ -67,7 +66,7 @@ function main() {
     .then(session => pxclient.subscribeToAncPolicies(session, ancCallback));
 }
 
-pxgrid.activate()
+pxcontrol.activate()
   .then(() => main());
 ```
 
