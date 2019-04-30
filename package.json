@@ -3,19 +3,32 @@
   "version": "1.0.0",
   "description": "A node library for the Cisco pxGrid 2.0 web socket based-service.",
   "main": "index.js",
-  "scripts": {
-    "test": "",
-    "dev": "nodemon index.js"
+  "author": {
+    "name": "Ryan Wolfe",
+    "email": "rn.wolfe@gmail.com",
+    "url": "https://github.com/rnwolfe"
   },
-  "author": "Ryan Wolfe",
   "license": "GPL-3.0",
-  "devDependencies": {
-    "nodemon": "^1.18.9"
-  },
+  "devDependencies": {},
   "dependencies": {
     "@stomp/stompjs": "^5.2.0",
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "ws": "^6.1.3"
+  },
+  "keywords": [
+    "cisco",
+    "pxgrid",
+    "ise",
+    "rest",
+    "ws",
+    "stomp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rnwolfe/pxgrid-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rnwolfe/pxgrid-node/issues"
   }
 }
