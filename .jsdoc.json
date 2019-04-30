@@ -6,7 +6,7 @@
     "default": {
       "staticFiles": {
         "include": [
-            "./assets/static"
+            "./assets/docstatic"
         ]
       }
     }
