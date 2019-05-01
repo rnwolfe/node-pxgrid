@@ -1,0 +1,22 @@
+language: node_js
+
+node_js:
+  - node
+
+install:
+  - npm install
+
+cache:
+  directories:
+    - node_modules
+
+script:
+  - npm run lint
+
+deploy:
+  provider: npm
+  email: rn.wolfe@gmail.com
+  api_key: $NPM_TOKEN
+  on:
+    branch: master
+    tags: true

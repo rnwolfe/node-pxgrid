@@ -11,32 +11,34 @@ const pxgridControlOptions = {
   clientCert: certs.clientCert,
   clientKey: certs.clientKey,
   caBundle: certs.caBundle,
-  clientKeyPassword: 'Pxgrid123',
-}
+  clientKeyPassword: 'Pxgrid123'
+};
 const pxgrid = new Pxgrid.Control(pxgridControlOptions);
 const pxclient = new Pxgrid.Client(pxgrid);
 
-const ancCallback = function (message) {
+const ancCallback = function(message) {
   //console.log(message)
   const body = JSON.parse(message.body);
   console.log(body);
-  console.log("Endpoint " + body.macAddress + " has had an " + body.status + " ANC event");
+  console.log(
+    'Endpoint ' + body.macAddress + ' has had an ' + body.status + ' ANC event'
+  );
+};
+
+function uint8arrayToStringMethod(myUint8Arr) {
+  return String.fromCharCode.apply(null, myUint8Arr);
 }
 
-function uint8arrayToStringMethod(myUint8Arr){
-   return String.fromCharCode.apply(null, myUint8Arr);
-}
-
-const genericCallback = function (message) {
+const genericCallback = function(message) {
   //console.log("NEW MESSAGE: " + message.body);
   // must use JSON.parse to use as a JS object
   //console.log(message);
-  var body = new TextDecoder("utf-8").decode(message._binaryBody);
+  var body = new TextDecoder('utf-8').decode(message._binaryBody);
   console.log(uint8arrayToStringMethod(message._binaryBody));
   //console.log(JSON.stringify(body))
   //const body = JSON.parse(message.body);
   //console.log(body);
-}
+};
 
 function main() {
   /*
@@ -75,9 +77,9 @@ function main() {
   pxclient.getSystemHealth().then(data => console.log(data));
   pxclient.getSystemPerformance().then(data => console.log(data));
   */
- pxclient.getSxpBindings().then(data => console.log(data));
+  pxclient.getSxpBindings().then(data => console.log(data));
 
-/*
+  /*
   pxclient.connectToBroker()
     .then(session => {
       session.activate();
@@ -141,6 +143,4 @@ function main() {
   */
 }
 
-pxgrid.activate()
-  .then(() => main());
-
+pxgrid.activate().then(() => main());
