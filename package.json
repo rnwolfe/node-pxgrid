@@ -9,7 +9,15 @@
     "url": "https://github.com/rnwolfe"
   },
   "license": "GPL-3.0",
-  "devDependencies": {},
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint ./lib",
+    "docs": "./node_modules/.bin/jsdoc --configure .jsdoc.json"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.12.0",
+    "jsdocs": "^1.0.0"
+  },
   "dependencies": {
     "@stomp/stompjs": "^5.2.0",
     "axios": "^0.18.0",
