@@ -1,4 +1,8 @@
 examples/
 assets/
 .jsdoc.json
+.prettierrc.json
+.eslintrc.json
+.travis.yml
+.editorconfig
 pxgrid-setup.md
