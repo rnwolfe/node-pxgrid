@@ -1,6 +1,6 @@
 {
   "name": "node-pxgrid",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A node library for the Cisco pxGrid 2.0 web socket based-service.",
   "main": "index.js",
   "author": {
