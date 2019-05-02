@@ -14,9 +14,8 @@ script:
   - npm run lint
 
 deploy:
-  branch: master
   provider: npm
   email: rn.wolfe@gmail.com
   api_key: $NPM_TOKEN
   on:
-    tags: true
+    branch: master

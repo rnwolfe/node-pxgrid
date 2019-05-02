@@ -1,6 +1,6 @@
 {
   "name": "node-pxgrid",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A node library for the Cisco pxGrid 2.0 web socket based-service.",
   "main": "index.js",
   "author": {
@@ -8,7 +8,7 @@
     "email": "rn.wolfe@gmail.com",
     "url": "https://github.com/rnwolfe"
   },
-  "license": "GPL-3.0",
+  "license": "MIT",
   "scripts": {
     "lint": "./node_modules/.bin/eslint -c .eslintrc.json ./lib/ ./examples/",
     "docs": "rm -rf ./docs; ./node_modules/.bin/jsdoc -c .jsdoc.json"
