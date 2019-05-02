@@ -74,4 +74,4 @@ For bugs, [please open an issue](https://github.com/rnwolfe/node-pxgrid/issues).
 
 ## License
 
-This module is licensed under the [GNU General Public License v3.0](LICENSE).
+This module is licensed under the [MIT license](LICENSE).
