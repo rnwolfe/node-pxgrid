@@ -1,8 +1,9 @@
 # node-pxgrid
 
 <p align="center">
-  <img src="https://travis-ci.org/rnwolfe/node-pxgrid.svg?branch=master" alt="Build Information" />
+  <a href="https://travis-ci.org/rnwolfe/node-pxgrid"><img src="https://travis-ci.org/rnwolfe/node-pxgrid.svg?branch=master" alt="Build Information" /></a>
   <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square" alt="Code Style: Prettier" />
+  <a href="https://developer.cisco.com/codeexchange/github/repo/rnwolfe/node-pxgrid"><img src="https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg" alt="Published on Cisco Code Exchange" /></a>
 </p>
 
 This is a Node.js module for interacting with Cisco PxGrid 2.0 that uses REST and WebSockets along with a STOMP-based messaging protocol. You can read more about how pxGrid works [on Cisco DevNet](https://developer.cisco.com/docs/pxgrid/#!introduction-to-pxgrid-2-0).
@@ -63,6 +64,7 @@ client.connect().then(session =>
   })
 );
 ```
+
 **Note** that in version 1.1.0, the [Client#connect](https://rnwolfe.github.io/node-pxgrid/Client.html#connect) method was added in order to provide a simpler, non-jargon way to connect the broker. All examples and documentation has been updated to use this method. It was also unnecessary in a previous version to use the [Control#activate](https://rnwolfe.github.io/node-pxgrid/Control.html#activate) method; however, it was still in some examples and documentation. This should not have affected usage, but needlessly overcomplicated the examples.
 
 For a full list of functions, please see [the documentation](https://rnwolfe.github.io/node-pxgrid/). For more example usage, see the [examples](examples/).
