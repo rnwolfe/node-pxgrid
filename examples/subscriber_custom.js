@@ -4,15 +4,13 @@ const genericCallback = function(message) {
   console.log(`${Date.now()}: ${JSON.stringify(message.body)}`);
 };
 
-pxgrid.activate().then(() => {
-  pxclient
-    .connectToBroker()
-    .then(session =>
-      pxclient.subscribeToCustom(
-        session,
-        'blah.blah.blah',
-        'customTopic',
-        genericCallback
-      )
-    );
-});
+pxclient
+  .connect()
+  .then(session =>
+    pxclient.subscribeToCustom(
+      session,
+      'my.service.name',
+      'myTopic',
+      genericCallback
+    )
+  );

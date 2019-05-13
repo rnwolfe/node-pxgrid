@@ -57,14 +57,13 @@ const pxgridControlOptions = {
 const control = new Pxgrid.Control(pxgridControlOptions);
 const client = new Pxgrid.Client(control);
 
-control.activate().then(() => {
-  client.connectToBroker().then(session =>
-    client.subscribeToSessions(session, function(message) {
-      console.log(message.body);
-    })
-  );
-});
+client.connect().then(session =>
+  client.subscribeToSessions(session, function(message) {
+    console.log(message.body);
+  })
+);
 ```
+**Note** that in version 1.1.0, the [Client#connect](https://rnwolfe.github.io/node-pxgrid/Client.html#connect) method was added in order to provide a simpler, non-jargon way to connect the broker. All examples and documentation has been updated to use this method. It was also unnecessary in a previous version to use the [Control#activate](https://rnwolfe.github.io/node-pxgrid/Control.html#activate) method; however, it was still in some examples and documentation. This should not have affected usage, but needlessly overcomplicated the examples.
 
 For a full list of functions, please see [the documentation](https://rnwolfe.github.io/node-pxgrid/). For more example usage, see the [examples](examples/).
 

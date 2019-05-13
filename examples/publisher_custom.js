@@ -1,8 +1,9 @@
 const { pxgrid, pxclient } = require('./pxgrid-setup');
 
+/*
 // Using async/await to easily perform for loop.
 async function main() {
-  const session = await pxclient.connectToBroker();
+  const session = await pxclient.connect();
   const publisher = await pxclient.createCustomPublisher(
     session,
     'blah.blah.blah',
@@ -15,4 +16,12 @@ async function main() {
   }
 }
 
-pxgrid.activate().then(() => main());
+main();
+*/
+
+pxclient
+  .connect()
+  .then(session =>
+    pxclient.createCustomPublisher(session, 'my.service.name', 'myTopic')
+  )
+  .then(publisher => publisher.publish({ someData: 'Some sort of data.' }));
