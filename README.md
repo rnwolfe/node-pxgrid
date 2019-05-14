@@ -1,9 +1,12 @@
 # node-pxgrid
 
 <p align="center">
-  <a href="https://travis-ci.org/rnwolfe/node-pxgrid"><img src="https://travis-ci.org/rnwolfe/node-pxgrid.svg?branch=master" alt="Build Information" /></a>
-  <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square" alt="Code Style: Prettier" />
-  <a href="https://developer.cisco.com/codeexchange/github/repo/rnwolfe/node-pxgrid"><img src="https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg" alt="Published on Cisco Code Exchange" /></a>
+  <a href="https://npmjs.org/package/node-pxgrid"><img src="https://badgen.net/npm/v/node-pxgrid" alt="npm version" /></a>
+  <a href="https://travis-ci.org/rnwolfe/node-pxgrid">
+  <img src="https://travis-ci.org/rnwolfe/node-pxgrid.svg?branch=master" alt="Build Information" /></a>
+  <img src="https://badgen.net/badge/code%20style/prettier/f2a" alt="Code Style: Prettier" />
+  <img src="https://badgen.net/github/license/rnwolfe/node-pxgrid" alt="license" />
+  <a href="https://developer.cisco.com/codeexchange/github/repo/rnwolfe/node-pxgrid"><img src="https://badgen.net/badge/cisco devnet/published/049FD9" alt="Published on Cisco Code Exchange" /></a>
 </p>
 
 This is a Node.js module for interacting with Cisco PxGrid 2.0 that uses REST and WebSockets along with a STOMP-based messaging protocol. You can read more about how pxGrid works [on Cisco DevNet](https://developer.cisco.com/docs/pxgrid/#!introduction-to-pxgrid-2-0).
