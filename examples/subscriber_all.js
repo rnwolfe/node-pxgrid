@@ -16,8 +16,6 @@ const genericCallback = function(message) {
   console.log(message.body);
 };
 
-pxgrid.activate().then(() => {
-  pxclient
-    .connectToBroker()
-    .then(session => pxclient.subscribeToAllTopics(session, genericCallback));
-});
+pxclient
+  .connectToBroker()
+  .then(session => pxclient.subscribeToAllTopics(session, genericCallback));
