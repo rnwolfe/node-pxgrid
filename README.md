@@ -69,9 +69,9 @@ client.connect().then(session =>
 
 **Note**: In version 1.1.0, the [Client#connect](https://rnwolfe.github.io/node-pxgrid/Client.html#connect) method was added in order to provide a simpler, non-jargon way to connect the broker. All examples and documentation has been updated to use this method. It was also unnecessary in a previous version to use the [Control#activate](https://rnwolfe.github.io/node-pxgrid/Control.html#activate) method; however, it was still in some examples and documentation. This should not have affected usage, but needlessly overcomplicated the examples.
 
-###
+### Manually Instantiate `Control` Class
 
-**Note**: In v1.2.0, I wanted to simplify the setup of the client Control versus Client pxGrid sessions. You can now pass the options for your client directly into the Client class and it will automatically handle the setup of your client. However, if you need to access the Control class directly, you can still pass the `Control` instance to `Client` and it will handle activation if it is not already activated.
+**Note**: In v1.2.0, I wanted to simplify the setup of the client `Control` versus `Client` pxGrid sessions. You can now pass the options for your client directly into the `Client` class and it will automatically handle the setup of your client. However, if you need to access the `Control` class directly, you can still pass the `Control` instance to `Client` and it will handle activation if it is not already activated.
 
 ```javascript
 const fs = require('fs');
