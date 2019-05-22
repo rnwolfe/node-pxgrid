@@ -49,35 +49,17 @@ Of course, you can do this in your app directly, or however you want. The key th
 ## Use them in your app
 
 ```js
+const Pxgrid = require('pxgrid-node');
 const certs = require('./certs.js');
 
-const Pxgrid = require('pxgrid-node');
-
-const pxgridControlOptions = {
-  host: 'dnaise.ironbowlab.com',
-  client: 'my-node-app',
-  clientCert: certs.clientCert,
-  clientKey: certs.clientKey,
-  caBundle: certs.caBundle,
-  clientKeyPassword: 'Pxgrid123'
-};
-const pxcontrol = new Pxgrid.Control(pxgridControlOptions);
-const pxclient = new Pxgrid.Client(pxcontrol);
-
-const ancCallback = function(message) {
-  console.log(
-    'Endpoint ' + body.macAddress + ' has had an ' + body.status + ' ANC event'
-  );
-};
-
-pxclient
-  .connect()
-  .then(session => pxclient.subscribeToAncPolicies(session, ancCallback));
+// Rest of your code..
 ```
+
+Please review the [README](README.md#Using-in-an-App) for more detail on using the module itself.
 
 ## Enable pxGrid Profiler Probe
 
-This is optional and only required if you want to **_publish_** asset information into ISE via pxGrid. Profiling (as well as pxGrid) requires the use of a Plus license, and required the Profiling Service to be enabled on your Policy Service node(s).
+Note: this step is **required** if you want to publish endpoint asset information to ISE via your pxGrid client. Otherwise, this is optional. Profiling, as well as pxGrid, requires the use of a Plus license, and requires the Profiling Service to be enabled on your Policy Service node(s).
 
 If you want **_publish_** asset information into ISE via pxGrid, you will need to configure the ISE Policy Service Node(s) (PSNs) in your deployment to use the pxGrid profiler probe. This enables the PSNs to subscribe to the Endpoint Asset topic. **This is not on by default**.
 
@@ -100,3 +82,7 @@ $ node anc_subscriber.py
 Now that the client has been activated, we should see it in our pxGrid dashboard (**Administration > pxGrid Services > All Clients tab**).
 
 <div align="center"><img src="assets/img/5_client_in_dashboard.png" width="50%" height="50%" alt="Client shows in dashboard" /></div>
+
+All pxGrid 2.0, which this module is built on, clients will show up in the Web Client tab of the pxGrid dashboard (**Administration > pxGrid Services > Web Clients tab**) with information on their subscribing/publishing topics, as well.
+
+<div align="center"><img src="assets/img/7_client_in_web_client_tab.png" width="50%" height="50%" alt="Client shows in Web Clients tab" /></div>

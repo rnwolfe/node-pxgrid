@@ -11,8 +11,6 @@ const pxgridControlOptions = {
   clientKeyPassword: 'Pxgrid123'
 };
 
-const pxgrid = new Pxgrid.Control(pxgridControlOptions);
-const pxclient = new Pxgrid.Client(pxgrid);
+const pxclient = new Pxgrid.Client(pxgridControlOptions);
 
-module.exports.pxgrid = pxgrid;
 module.exports.pxclient = pxclient;
