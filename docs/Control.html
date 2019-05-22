@@ -74,7 +74,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="control.js.html">control.js</a>, <a href="control.js.html#line52">line 52</a>
+        <a href="control.js.html">control.js</a>, <a href="control.js.html#line53">line 53</a>
     </li></ul></dd>
     
 
@@ -109,6 +109,8 @@
     <dd class="tag-see">
         <ul>
             <li><a href="https://github.com/cisco-pxgrid/pxgrid-rest-ws/wiki/">Cisco PxGrid 2.0 GitHub Wiki</a> for more information on the Cisco PxGrid 2.0 implementation.</li>
+        
+            <li><a href="Client.html">Client</a></li>
         </ul>
     </dd>
     
@@ -153,7 +155,7 @@ const pxgridControlOptions = {
   port: '8910'
 }
 
-const pxcontrol = new Pxgrid.Control(pxgridControlOptions);</code></pre>
+const pxgrid = new Pxgrid.Control(pxgridControlOptions);</code></pre>
 
 
 
@@ -544,7 +546,7 @@ const pxcontrol = new Pxgrid.Control(pxgridControlOptions);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="control.js.html">control.js</a>, <a href="control.js.html#line147">line 147</a>
+        <a href="control.js.html">control.js</a>, <a href="control.js.html#line161">line 161</a>
     </li></ul></dd>
     
 
@@ -592,6 +594,8 @@ const pxcontrol = new Pxgrid.Control(pxgridControlOptions);</code></pre>
 
 <div class="description">
     <p>Activate your client pxGrid account on the controller.</p>
+<p>This needs to happen one time before using your new client, as well as anytime its state changes to PENDING or DISABLED on the controller.</p>
+<p>For simplicity, this is handled <em>automatically</em> by Client#connect, but can be done manually, as well.</p>
 <p>If the client is not activated, you will fail to interact with pxGrid.</p>
 <p>Sometimes, the account will return with a PENDING status which will induce a backoff timer of 60 seconds before retrying. This is normally because the account needs to be activated on the pxGrid Controller (either manually, or automatically). If configured for auto-approval, the activation should work in the next attempt.</p>
 </div>
@@ -848,7 +852,7 @@ const pxcontrol = new Pxgrid.Control(pxgridControlOptions);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="control.js.html">control.js</a>, <a href="control.js.html#line269">line 269</a>
+        <a href="control.js.html">control.js</a>, <a href="control.js.html#line310">line 310</a>
     </li></ul></dd>
     
 
@@ -1014,7 +1018,7 @@ const pxcontrol = new Pxgrid.Control(pxgridControlOptions);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="control.js.html">control.js</a>, <a href="control.js.html#line301">line 301</a>
+        <a href="control.js.html">control.js</a>, <a href="control.js.html#line342">line 342</a>
     </li></ul></dd>
     
 
@@ -1172,7 +1176,7 @@ const pxcontrol = new Pxgrid.Control(pxgridControlOptions);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="control.js.html">control.js</a>, <a href="control.js.html#line311">line 311</a>
+        <a href="control.js.html">control.js</a>, <a href="control.js.html#line352">line 352</a>
     </li></ul></dd>
     
 
@@ -1281,7 +1285,7 @@ const pxcontrol = new Pxgrid.Control(pxgridControlOptions);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="control.js.html">control.js</a>, <a href="control.js.html#line198">line 198</a>
+        <a href="control.js.html">control.js</a>, <a href="control.js.html#line218">line 218</a>
     </li></ul></dd>
     
 
@@ -1574,7 +1578,7 @@ const pxcontrol = new Pxgrid.Control(pxgridControlOptions);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="control.js.html">control.js</a>, <a href="control.js.html#line241">line 241</a>
+        <a href="control.js.html">control.js</a>, <a href="control.js.html#line282">line 282</a>
     </li></ul></dd>
     
 
@@ -1755,7 +1759,7 @@ const pxcontrol = new Pxgrid.Control(pxgridControlOptions);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="control.js.html">control.js</a>, <a href="control.js.html#line258">line 258</a>
+        <a href="control.js.html">control.js</a>, <a href="control.js.html#line299">line 299</a>
     </li></ul></dd>
     
 
@@ -1920,7 +1924,7 @@ const pxcontrol = new Pxgrid.Control(pxgridControlOptions);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="control.js.html">control.js</a>, <a href="control.js.html#line279">line 279</a>
+        <a href="control.js.html">control.js</a>, <a href="control.js.html#line320">line 320</a>
     </li></ul></dd>
     
 
@@ -2078,7 +2082,7 @@ const pxcontrol = new Pxgrid.Control(pxgridControlOptions);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="control.js.html">control.js</a>, <a href="control.js.html#line287">line 287</a>
+        <a href="control.js.html">control.js</a>, <a href="control.js.html#line328">line 328</a>
     </li></ul></dd>
     
 
@@ -2168,7 +2172,7 @@ const pxcontrol = new Pxgrid.Control(pxgridControlOptions);</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed May 15 2019 10:04:33 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Wed May 22 2019 10:10:04 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

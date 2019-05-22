@@ -62,7 +62,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="Client"><span class="type-signature"></span>new Client<span class="signature">(pxgridControl)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Client"><span class="type-signature"></span>new Client<span class="signature">(options)</span><span class="type-signature"></span></h4>
 
     
 
@@ -74,7 +74,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line78">line 78</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line75">line 75</a>
     </li></ul></dd>
     
 
@@ -136,25 +136,7 @@
 
 
 
-    <h5>Examples</h5>
-    
-        <p class="code-caption">Control instance setup excluded.</p>
-    
-    <pre class="prettyprint"><code>const Pxgrid = require('pxgrid-node');
-
-const pxgrid = new Pxgrid.Control(pxgridControlOptions);
-const pxclient = new Pxgrid.Client(pxgridControlObject);
-
-pxclient.connect()
-  .then(session => {
-    pxclient.getProfiles()
-       .then(profiles => console.log(profiles));
-
-    pxclient.applyAncToEndpointByMac('QUARANTINE', '11:00:00:00:00:01')
-      .then(response => console.log(response));
-  });</code></pre>
-
-        <p class="code-caption">Example including the Control instance setup.</p>
+    <h5>Example</h5>
     
     <pre class="prettyprint"><code>const fs = require('fs');
 const Pxgrid = require('pxgrid-node');
@@ -173,8 +155,7 @@ const pxgridControlOptions = {
   clientKeyPassword: false,
 }
 
-const pxcontrol = new Pxgrid.Control(pxgridControlOptions);
-const pxclient = new Pxgrid.Client(pxgridControlObject);
+const pxclient = new Pxgrid.Client(options);
 
 pxclient.connect()
   .then(session => {
@@ -213,13 +194,13 @@ pxclient.connect()
 
         <tr>
             
-                <td class="name"><code>pxgridControl</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object.&lt;<a href="Control.html">Control</a>></span>
+<span class="param-type">Object</span>
 
 
             
@@ -229,7 +210,289 @@ pxclient.connect()
 
             
 
-            <td class="description last"><p>A configured instance of the Control class.</p></td>
+            <td class="description last"><p>Options for the PxGrid Control instance. See examples for more information.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>host</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The IP or URL of the PxGrid Controller.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>port</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The host port to connect to the PxGrid Controller on.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>client</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The desired name of the client for the client.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>clientCert</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Buffer</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A byte stream of the client public key certificate file to use.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>clientKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Buffer</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A byte stream of the client private key file to use.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>caBundle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Buffer</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A byte stream of the CA Bundle used to verify the PxGrid Controller's identity.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>clientKeyPassword</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The password to unlock the client private key file.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>secret</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The secret to help authenticate a newly registered service.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -292,7 +555,7 @@ pxclient.connect()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line648">line 648</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line697">line 697</a>
     </li></ul></dd>
     
 
@@ -473,7 +736,7 @@ pxclient.connect()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line608">line 608</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line657">line 657</a>
     </li></ul></dd>
     
 
@@ -654,7 +917,7 @@ pxclient.connect()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line668">line 668</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line717">line 717</a>
     </li></ul></dd>
     
 
@@ -835,7 +1098,7 @@ pxclient.connect()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line628">line 628</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line677">line 677</a>
     </li></ul></dd>
     
 
@@ -1004,7 +1267,7 @@ pxclient.connect()
 
     
 
-    <h4 class="name" id="connect"><span class="type-signature"></span>connect<span class="signature">(debug<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="connect"><span class="type-signature"></span>connect<span class="signature">(options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1016,7 +1279,7 @@ pxclient.connect()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line294">line 294</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line335">line 335</a>
     </li></ul></dd>
     
 
@@ -1094,6 +1357,60 @@ Primarily added to give a jargon-free method to connect.</p>
         
 
         
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>An object with desired options.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
         <th>Default</th>
         
 
@@ -1102,6 +1419,162 @@ Primarily added to give a jargon-free method to connect.</p>
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>accountDesc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'pxgrid-node'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>A description for the client you are registering.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>retryInterval</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>60000</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Retry interval in milliseconds.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxRetries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>10</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Maximum retries that will be attempted.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>retryAttempt</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>1</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Which attempt we are on. This is necessary since we use recursion for retries.</p></td>
+        </tr>
+
     
 
         <tr>
@@ -1138,7 +1611,14 @@ Primarily added to give a jargon-free method to connect.</p>
                 </td>
             
 
-            <td class="description last"><p>Enables debugging.</p></td>
+            <td class="description last"><p>false</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1164,7 +1644,7 @@ Primarily added to give a jargon-free method to connect.</p>
 
         
 <div class="param-desc">
-    <p>A STOMP client object.</p>
+    <p>A fully activated client session.</p>
 </div>
 
 
@@ -1190,7 +1670,7 @@ Primarily added to give a jargon-free method to connect.</p>
 
     
 
-    <h4 class="name" id="connectToBroker"><span class="type-signature"></span>connectToBroker<span class="signature">(debug<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="connectToBroker"><span class="type-signature"></span>connectToBroker<span class="signature">(options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1202,7 +1682,7 @@ Primarily added to give a jargon-free method to connect.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line235">line 235</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line260">line 260</a>
     </li></ul></dd>
     
 
@@ -1249,9 +1729,8 @@ Primarily added to give a jargon-free method to connect.</p>
 
 
 <div class="description">
-    <p>Creates a STOMP client over a Web Socket connection to the PxGrid Controller. This returned client object can be passed to subscribe/publish function to enable pub/sub functionality.</p>
-<p>Returned client must be activated prior to use using client.activate(). This can take a short period of time, so a setTimeout may be required to ensure client was activated before trying to use.</p>
-<p>This may change in the future for better usage (e.g. wait period executed within connectToBroker()).</p>
+    <p>Creates a STOMP client over a Web Socket connection to the PxGrid Controller.</p>
+<p>This returned client object can be passed to subscribe/publish function to enable pub/sub functionality.</p>
 </div>
 
 
@@ -1293,6 +1772,60 @@ pxclient
         
 
         
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>An object with desired options.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
         <th>Default</th>
         
 
@@ -1301,6 +1834,162 @@ pxclient
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>accountDesc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'pxgrid-node'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>A description for the client you are registering.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>retryInterval</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>60000</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Retry interval in milliseconds.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxRetries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>10</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Maximum retries that will be attempted.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>retryAttempt</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>1</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Which attempt we are on. This is necessary since we use recursion for retries.</p></td>
+        </tr>
+
     
 
         <tr>
@@ -1337,7 +2026,14 @@ pxclient
                 </td>
             
 
-            <td class="description last"><p>Enables debugging of publish/subscribe events going through the broker.</p></td>
+            <td class="description last"><p>false</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1363,7 +2059,7 @@ pxclient
 
         
 <div class="param-desc">
-    <p>A STOMP client object.</p>
+    <p>A fully activated client session.</p>
 </div>
 
 
@@ -1401,7 +2097,7 @@ pxclient
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line548">line 548</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line597">line 597</a>
     </li></ul></dd>
     
 
@@ -1582,7 +2278,7 @@ pxclient
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line1066">line 1066</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line1115">line 1115</a>
     </li></ul></dd>
     
 
@@ -1874,7 +2570,7 @@ This also registers the client as a service for the topic with the controller.</
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line949">line 949</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line998">line 998</a>
     </li></ul></dd>
     
 
@@ -1983,7 +2679,7 @@ This also registers the client as a service for the topic with the controller.</
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line564">line 564</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line613">line 613</a>
     </li></ul></dd>
     
 
@@ -2141,7 +2837,7 @@ This also registers the client as a service for the topic with the controller.</
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line591">line 591</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line640">line 640</a>
     </li></ul></dd>
     
 
@@ -2299,7 +2995,7 @@ This also registers the client as a service for the topic with the controller.</
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line577">line 577</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line626">line 626</a>
     </li></ul></dd>
     
 
@@ -2408,7 +3104,7 @@ This also registers the client as a service for the topic with the controller.</
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line689">line 689</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line738">line 738</a>
     </li></ul></dd>
     
 
@@ -2567,7 +3263,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line523">line 523</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line572">line 572</a>
     </li></ul></dd>
     
 
@@ -2676,7 +3372,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line535">line 535</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line584">line 584</a>
     </li></ul></dd>
     
 
@@ -2834,7 +3530,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line841">line 841</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line890">line 890</a>
     </li></ul></dd>
     
 
@@ -2943,7 +3639,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line827">line 827</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line876">line 876</a>
     </li></ul></dd>
     
 
@@ -3052,7 +3748,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line459">line 459</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line508">line 508</a>
     </li></ul></dd>
     
 
@@ -3210,7 +3906,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line444">line 444</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line493">line 493</a>
     </li></ul></dd>
     
 
@@ -3395,7 +4091,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line491">line 491</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line540">line 540</a>
     </li></ul></dd>
     
 
@@ -3553,7 +4249,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line474">line 474</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line523">line 523</a>
     </li></ul></dd>
     
 
@@ -3711,7 +4407,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line407">line 407</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line456">line 456</a>
     </li></ul></dd>
     
 
@@ -3820,7 +4516,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line740">line 740</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line789">line 789</a>
     </li></ul></dd>
     
 
@@ -3978,7 +4674,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line723">line 723</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line772">line 772</a>
     </li></ul></dd>
     
 
@@ -4156,7 +4852,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line811">line 811</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line860">line 860</a>
     </li></ul></dd>
     
 
@@ -4334,7 +5030,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line794">line 794</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line843">line 843</a>
     </li></ul></dd>
     
 
@@ -4512,7 +5208,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line316">line 316</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line365">line 365</a>
     </li></ul></dd>
     
 
@@ -4670,7 +5366,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line330">line 330</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line379">line 379</a>
     </li></ul></dd>
     
 
@@ -4828,7 +5524,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line304">line 304</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line353">line 353</a>
     </li></ul></dd>
     
 
@@ -4937,7 +5633,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line879">line 879</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line928">line 928</a>
     </li></ul></dd>
     
 
@@ -5047,7 +5743,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line916">line 916</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line965">line 965</a>
     </li></ul></dd>
     
 
@@ -5299,7 +5995,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line933">line 933</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line982">line 982</a>
     </li></ul></dd>
     
 
@@ -5551,7 +6247,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line355">line 355</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line404">line 404</a>
     </li></ul></dd>
     
 
@@ -5709,7 +6405,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line343">line 343</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line392">line 392</a>
     </li></ul></dd>
     
 
@@ -5818,7 +6514,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line981">line 981</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line1030">line 1030</a>
     </li></ul></dd>
     
 
@@ -6417,7 +7113,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line1034">line 1034</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line1083">line 1083</a>
     </li></ul></dd>
     
 
@@ -6576,7 +7272,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line706">line 706</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line755">line 755</a>
     </li></ul></dd>
     
 
@@ -6757,7 +7453,7 @@ If operation does not exist, HTTP status &quot;204 No content&quot; will be retu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line1109">line 1109</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line1158">line 1158</a>
     </li></ul></dd>
     
 
@@ -7061,7 +7757,7 @@ This topic is assumed as previously created using Client.createCustomPublisher()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line1016">line 1016</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line1065">line 1065</a>
     </li></ul></dd>
     
 
@@ -7242,7 +7938,7 @@ This topic is assumed as previously created using Client.createCustomPublisher()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line391">line 391</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line440">line 440</a>
     </li></ul></dd>
     
 
@@ -7424,7 +8120,7 @@ This topic is assumed as previously created using Client.createCustomPublisher()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line507">line 507</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line556">line 556</a>
     </li></ul></dd>
     
 
@@ -7605,7 +8301,7 @@ This topic is assumed as previously created using Client.createCustomPublisher()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line423">line 423</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line472">line 472</a>
     </li></ul></dd>
     
 
@@ -7787,7 +8483,7 @@ This topic is assumed as previously created using Client.createCustomPublisher()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line756">line 756</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line805">line 805</a>
     </li></ul></dd>
     
 
@@ -7968,7 +8664,7 @@ This topic is assumed as previously created using Client.createCustomPublisher()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line859">line 859</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line908">line 908</a>
     </li></ul></dd>
     
 
@@ -8149,7 +8845,7 @@ This topic is assumed as previously created using Client.createCustomPublisher()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line370">line 370</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line419">line 419</a>
     </li></ul></dd>
     
 
@@ -8330,7 +9026,7 @@ This topic is assumed as previously created using Client.createCustomPublisher()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line896">line 896</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line945">line 945</a>
     </li></ul></dd>
     
 
@@ -8512,7 +9208,7 @@ This topic is assumed as previously created using Client.createCustomPublisher()
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client.js.html">client.js</a>, <a href="client.js.html#line777">line 777</a>
+        <a href="client.js.html">client.js</a>, <a href="client.js.html#line826">line 826</a>
     </li></ul></dd>
     
 
@@ -8697,7 +9393,7 @@ This topic is assumed as previously created using Client.createCustomPublisher()
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed May 15 2019 10:04:33 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Wed May 22 2019 10:10:04 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

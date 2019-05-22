@@ -46,6 +46,8 @@ const https = require('https');
 const WebSocket = require('ws');
 const StompJs = require('@stomp/stompjs');
 
+const Pxgrid = require('./control');
+
 const ANC_SERVICE = 'com.cisco.ise.config.anc';
 const SESSION_SERVICE = 'com.cisco.ise.session';
 const PROFILER_SERVICE = 'com.cisco.ise.config.profiler';
@@ -67,28 +69,23 @@ const ENDPOINT_ASSET_SERVICE = 'com.cisco.endpoint.asset';
  * PxGrid 2.0 makes use of REST API for push/pull options, and Web Sockets for messaging-style connections.
  *
  * The web sockets use a STOMP-based messaging framework.
+ *
  * @constructor
- * @param {Object.&lt;Control>} pxgridControl A configured instance of the Control class.
+ *
+ * @param {Object} options Options for the PxGrid Control instance. See examples for more information.
+ * @param {string} options.host The IP or URL of the PxGrid Controller.
+ * @param {number} [options.port] The host port to connect to the PxGrid Controller on.
+ * @param {string} options.client The desired name of the client for the client.
+ * @param {Buffer} options.clientCert A byte stream of the client public key certificate file to use.
+ * @param {Buffer} options.clientKey A byte stream of the client private key file to use.
+ * @param {Buffer} options.caBundle A byte stream of the CA Bundle used to verify the PxGrid Controller's identity.
+ * @param {string} [options.clientKeyPassword] The password to unlock the client private key file.
+ * @param {string} [options.secret] The secret to help authenticate a newly registered service.
  *
  * @see {@link Control}
  * @see {@link https://github.com/cisco-pxgrid/pxgrid-rest-ws/wiki/ Cisco PxGrid 2.0 GitHub Wiki} for more information on the Cisco PxGrid 2.0 implementation.
  *
- * @example &lt;caption>Control instance setup excluded.&lt;/caption>
- * const Pxgrid = require('pxgrid-node');
- *
- * const pxgrid = new Pxgrid.Control(pxgridControlOptions);
- * const pxclient = new Pxgrid.Client(pxgridControlObject);
- *
- * pxclient.connect()
- *   .then(session => {
- *     pxclient.getProfiles()
- *        .then(profiles => console.log(profiles));
- *
- *     pxclient.applyAncToEndpointByMac('QUARANTINE', '11:00:00:00:00:01')
- *       .then(response => console.log(response));
- *   });
- *
- * @example &lt;caption>Example including the Control instance setup.&lt;/caption>
+ * @example
  * const fs = require('fs');
  * const Pxgrid = require('pxgrid-node');
  *
@@ -106,8 +103,7 @@ const ENDPOINT_ASSET_SERVICE = 'com.cisco.endpoint.asset';
  *   clientKeyPassword: false,
  * }
  *
- * const pxcontrol = new Pxgrid.Control(pxgridControlOptions);
- * const pxclient = new Pxgrid.Client(pxgridControlObject);
+ * const pxclient = new Pxgrid.Client(options);
  *
  * pxclient.connect()
  *   .then(session => {
@@ -119,8 +115,34 @@ const ENDPOINT_ASSET_SERVICE = 'com.cisco.endpoint.asset';
  *   });
  */
 class Client {
-  constructor(pxgridControl) {
-    this.pxgrid = pxgridControl;
+  constructor(
+    options = {
+      host,
+      client,
+      clientCert,
+      clientKey,
+      caBundle,
+      clientKeyPassword,
+      secret,
+      port
+    }
+  ) {
+    /**
+     * In v1.2.0, we removed the need for the user to instantiate the Control class.
+     *
+     * The Client class will now handle that.
+     * Instead, we handle it here by requiring the options be passed directly into the Client module.
+     * This is a cleaner setup, and reduces the need for promise nesting in the user's code.
+     * For backwards compatability, we need to still check if it's a Control instance as to handle
+     * it correctly.
+     *
+     * This is deprecated, and will be removed in v2.0.0.
+     */
+    if (options.constructor.name === 'Control') {
+      this.pxgrid = options;
+    } else {
+      this.pxgrid = new Pxgrid(options);
+    }
     this.config = this.pxgrid.getConfig();
     this.restSessions = [];
   }
@@ -253,14 +275,17 @@ class Client {
 
   /**
    * @description
-   * Creates a STOMP client over a Web Socket connection to the PxGrid Controller. This returned client object can be passed to subscribe/publish function to enable pub/sub functionality.
+   * Creates a STOMP client over a Web Socket connection to the PxGrid Controller.
    *
-   * Returned client must be activated prior to use using client.activate(). This can take a short period of time, so a setTimeout may be required to ensure client was activated before trying to use.
+   * This returned client object can be passed to subscribe/publish function to enable pub/sub functionality.
    *
-   * This may change in the future for better usage (e.g. wait period executed within connectToBroker()).
-   *
-   * @param {boolean} [debug=false] - Enables debugging of publish/subscribe events going through the broker.
-   * @return {Promise} A STOMP client object.
+   * @param {Object} [options] An object with desired options.
+   * @param {string} [options.accountDesc='pxgrid-node'] - A description for the client you are registering.
+   * @param {number} [options.retryInterval=60000] - Retry interval in milliseconds.
+   * @param {number} [options.maxRetries=10] - Maximum retries that will be attempted.
+   * @param {number} [options.retryAttempt=1] - Which attempt we are on. This is necessary since we use recursion for retries.
+   * @param {boolean} [options.debug=false] false
+   * @returns {Promise} A fully activated client session.
    * @memberof Client
    *
    * @see Client#connect
@@ -275,13 +300,28 @@ class Client {
    *   .connect()
    *   .then(session => pxclient.subscribeToAncPolicies(session, ancCallback));
    */
-  connectToBroker(debug = false) {
-    return this._getServiceWithSecret(PUBSUB_SERVICE)
+  connectToBroker(
+    options = {
+      accountDesc: undefined,
+      retryInterval: undefined,
+      maxRetries: undefined,
+      retryAttempt: undefined,
+      debug: false
+    }
+  ) {
+    return this.pxgrid
+      .activate(
+        options.accountDesc,
+        options.retryInterval,
+        options.maxRetries,
+        options.retryAttempt
+      )
+      .then(() => this._getServiceWithSecret(PUBSUB_SERVICE))
       .then(pubsub => {
         const client = new StompJs.Client({
           webSocketFactory: () => this._getPubsubWebSocket(pubsub),
           debug: str => {
-            if (debug) console.log(str);
+            if (options.debug) console.log(str);
           },
           forceBinaryWSFrames: true,
           connectHeaders: { host: pubsub.nodeName },
@@ -291,23 +331,21 @@ class Client {
           heartbeatOutgoing: 4000
         });
 
-        client.onConnect = function(frame) {
-          // Do something, all subscribes must be done is this callback
-          // This is needed because this will be executed after a (re)connect
-          console.log('Connected to STOMP broker!');
-          console.log(`FRAME: ${frame}`);
+        client.onConnect = frame => {
+          if (options.debug) {
+            console.log('Connected to STOMP broker!');
+            console.log(`FRAME: ${frame}`);
+          }
         };
 
-        client.onWebSocketClose = function(frame) {
-          console.log('Disconnected from STOMP broker!');
-          console.log(`FRAME: ${frame}`);
+        client.onWebSocketClose = frame => {
+          if (options.debug) {
+            console.log('Disconnected from STOMP broker!');
+            console.log(`FRAME: ${frame}`);
+          }
         };
 
-        client.onStompError = function(frame) {
-          // Will be invoked in case of error encountered at Broker
-          // Bad login/passcode typically will cause an error
-          // Complaint brokers will set `message` header with a brief message. Body may contain details.
-          // Compliant brokers will terminate the connection after any error
+        client.onStompError = frame => {
           console.log(`Broker reported error: ${frame.headers.message}`);
           console.log(`Additional details: ${frame.body}`);
         };
@@ -317,9 +355,6 @@ class Client {
       .then(client => {
         client.activate();
         return client;
-      })
-      .catch(error => {
-        throw new Error(error);
       });
   }
 
@@ -329,13 +364,27 @@ class Client {
    * Alternative to Client.connectToBroker().
    * Primarily added to give a jargon-free method to connect.
    *
-   * @param {boolean} [debug=false] Enables debugging.
-   * @return {Promise} A STOMP client object.
+   * @param {Object} [options] An object with desired options.
+   * @param {string} [options.accountDesc='pxgrid-node'] - A description for the client you are registering.
+   * @param {number} [options.retryInterval=60000] - Retry interval in milliseconds.
+   * @param {number} [options.maxRetries=10] - Maximum retries that will be attempted.
+   * @param {number} [options.retryAttempt=1] - Which attempt we are on. This is necessary since we use recursion for retries.
+   * @param {boolean} [options.debug=false] false
+   * @returns {Promise} A fully activated client session.
    * @memberof Client
+   *
    * @see Client#connectToBroker
    */
-  connect(debug = false) {
-    return this.connectToBroker(debug);
+  connect(
+    options = {
+      accountDesc: undefined,
+      retryInterval: undefined,
+      maxRetries: undefined,
+      retryAttempt: undefined,
+      debug: false
+    }
+  ) {
+    return this.connectToBroker(options);
   }
 
   // Session directory functions
@@ -1185,7 +1234,7 @@ module.exports = Client;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed May 15 2019 10:04:33 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Wed May 22 2019 10:10:04 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

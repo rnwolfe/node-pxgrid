@@ -56,7 +56,8 @@
 
 
     <section class="readme">
-        <article><h1>node-pxgrid</h1><p align="center">
+        <article><h1>node-pxgrid</h1>
+<p align="center">
   <a href="https://npmjs.org/package/node-pxgrid"><img src="https://badgen.net/npm/v/node-pxgrid" alt="npm version" /></a>
   <a href="https://travis-ci.org/rnwolfe/node-pxgrid">
   <img src="https://travis-ci.org/rnwolfe/node-pxgrid.svg?branch=master" alt="Build Information" /></a>
@@ -64,17 +65,52 @@
   <img src="https://badgen.net/github/license/rnwolfe/node-pxgrid" alt="license" />
   <a href="https://developer.cisco.com/codeexchange/github/repo/rnwolfe/node-pxgrid"><img src="https://badgen.net/badge/cisco devnet/published/049FD9" alt="Published on Cisco Code Exchange" /></a>
 </p>
-
 <p>This is a Node.js module for interacting with Cisco PxGrid 2.0 that uses REST and WebSockets along with a STOMP-based messaging protocol. You can read more about how pxGrid works <a href="https://developer.cisco.com/docs/pxgrid/#!introduction-to-pxgrid-2-0">on Cisco DevNet</a>.</p>
 <p>It has great performance improvements over using Cisco ISE's standard REST API as well as PxGrid 1.0, as well as the obvious benefits that come with a subscribe/publish model over a general pull model.</p>
-<h2>Documentation</h2><p><a href="https://rnwolfe.github.io/node-pxgrid/">Please view the documentation here</a>.</p>
+<h2>Documentation</h2>
+<p><a href="https://rnwolfe.github.io/node-pxgrid/">Please view the documentation here</a>.</p>
 <p>Feel free to open an issue or otherwise contact me if you feel the documentation could be improved upon.</p>
-<h2>Getting Started</h2><h3>Installing</h3><p>Install using <code>npm</code>:</p>
+<h2>Installing</h2>
+<p>Install using <code>npm</code>:</p>
 <pre class="prettyprint source lang-bash"><code>npm i node-pxgrid
 # or save
-npm i node-pxgrid --save</code></pre><h3>Creating a pxGrid account on Cisco ISE</h3><p>In order to get started, you will need to create a pxGrid account on Cisco ISE. To my knowledge, Cisco ISE is the only pxGrid controller that exists today, but the package should, theoretically, support any other accurate implementation of pxGrid 2.0. This involves getting a certificate for authenticating your client. <a href="https://github.com/rnwolfe/node-pxgrid/blob/master/pxgrid-setup.md">Please follow the steps here to create an account</a>.</p>
+npm i node-pxgrid --save
+</code></pre>
+<h3>Creating a pxGrid account on Cisco ISE</h3>
+<p>In order to get started, you will need to create a pxGrid account on Cisco ISE. To my knowledge, Cisco ISE is the only pxGrid controller that exists today, but the package should, theoretically, support any other accurate implementation of pxGrid 2.0. This involves getting a certificate for authenticating your client. <a href="https://github.com/rnwolfe/node-pxgrid/blob/master/pxgrid-setup.md">Please follow the steps here to create an account</a>. Unfortunately, there is no public API that can allow us to do this programmatically at this point.</p>
 <p>After you have an account, you can use it in your app. Note, that the initial time it registers, it will need to be approved in the pxGrid controller. If you used the above guide, this will be done automatically. The <code>Control.activate()</code> function will automatically retry every 30 seconds if it's initial state is pending. Sometimes, the auto-approval may take 1 try before completing.</p>
-<h3>Using in an App</h3><pre class="prettyprint source lang-javascript"><code>const fs = require('fs');
+<h2>Using in an App</h2>
+<h3>Simplest Setup</h3>
+<pre class="prettyprint source lang-javascript"><code>const fs = require('fs');
+const Pxgrid = require('node-pxgrid');
+
+certs = [];
+certs.certPath = './certs/';
+certs.clientCert = fs.readFileSync(certs.certPath + 'my-node-app.cer');
+certs.clientKey = fs.readFileSync(certs.certPath + 'my-node-app.key');
+certs.caBundle = fs.readFileSync(certs.certPath + 'ise-chain.cer');
+
+const options = {
+  host: 'dnaise.ironbowlab.com',
+  client: 'my-node-app',
+  clientCert: certs.clientCert,
+  clientKey: certs.clientKey,
+  caBundle: certs.caBundle,
+  clientKeyPassword: 'Pxgrid123'
+};
+
+const client = new Pxgrid.Client(options);
+
+client.connect().then(session =>
+  client.subscribeToSessions(session, function(message) {
+    console.log(message.body);
+  })
+);
+</code></pre>
+<p><strong>Note</strong>: In version 1.1.0, the <a href="https://rnwolfe.github.io/node-pxgrid/Client.html#connect">Client#connect</a> method was added in order to provide a simpler, non-jargon way to connect the broker. All examples and documentation has been updated to use this method. It was also unnecessary in a previous version to use the <a href="https://rnwolfe.github.io/node-pxgrid/Control.html#activate">Control#activate</a> method; however, it was still in some examples and documentation. This should not have affected usage, but needlessly overcomplicated the examples.</p>
+<h3>Manually Instantiate <code>Control</code> Class</h3>
+<p><strong>Note</strong>: In v1.2.0, I wanted to simplify the setup of the client <code>Control</code> versus <code>Client</code> pxGrid sessions. You can now pass the options for your client directly into the <code>Client</code> class and it will automatically handle the setup of your client. However, if you need to access the <code>Control</code> class directly, you can still pass the <code>Control</code> instance to <code>Client</code> and it will handle activation if it is not already activated.</p>
+<pre class="prettyprint source lang-javascript"><code>const fs = require('fs');
 const Pxgrid = require('node-pxgrid');
 
 certs = [];
@@ -92,17 +128,20 @@ const pxgridControlOptions = {
   clientKeyPassword: 'Pxgrid123'
 };
 
-const control = new Pxgrid.Control(pxgridControlOptions);
-const client = new Pxgrid.Client(control);
+const pxgrid = new Pxgrid.Control(pxgridControlOptions);
+const client = new Pxgrid.Client(pxgrid);
 
 client.connect().then(session =>
   client.subscribeToSessions(session, function(message) {
     console.log(message.body);
   })
-);</code></pre><p><strong>Note</strong> that in version 1.1.0, the <a href="https://rnwolfe.github.io/node-pxgrid/Client.html#connect">Client#connect</a> method was added in order to provide a simpler, non-jargon way to connect the broker. All examples and documentation has been updated to use this method. It was also unnecessary in a previous version to use the <a href="https://rnwolfe.github.io/node-pxgrid/Control.html#activate">Control#activate</a> method; however, it was still in some examples and documentation. This should not have affected usage, but needlessly overcomplicated the examples.</p>
+);
+</code></pre>
 <p>For a full list of functions, please see <a href="https://rnwolfe.github.io/node-pxgrid/">the documentation</a>. For more example usage, see the <a href="examples/">examples</a>.</p>
-<h2>Bugs</h2><p>For bugs, <a href="https://github.com/rnwolfe/node-pxgrid/issues">please open an issue</a>.</p>
-<h2>License</h2><p>This module is licensed under the <a href="LICENSE">MIT license</a>.</p></article>
+<h2>Bugs</h2>
+<p>For bugs, <a href="https://github.com/rnwolfe/node-pxgrid/issues">please open an issue</a>.</p>
+<h2>License</h2>
+<p>This module is licensed under the <a href="LICENSE">MIT license</a>.</p></article>
     </section>
 
 
@@ -117,7 +156,7 @@ client.connect().then(session =>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed May 15 2019 10:04:33 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Wed May 22 2019 10:10:04 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
