@@ -10,12 +10,16 @@ const body = {
   assetProductId: 'IE2000',
   assetSerialNumber: '1212121213243',
   assetMacAddress: '11:00:00:00:00:01',
-  assetDeviceType: "Ryan Wolfe's Special Device",
+  assetDeviceType: "My is angry",
   assetIpAddress: '1.2.3.4',
   assetCustomAttributes: [
     {
       value: 'SuperDevice',
-      key: 'WolfeAttr'
+      key: 'MyCustomAttr1'
+    },
+    {
+      value: 'Pushed via PxGrid',
+      key: 'MyCustomAttr2'
     }
   ],
   assetConnectedLinks: []

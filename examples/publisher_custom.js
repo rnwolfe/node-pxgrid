@@ -1,5 +1,4 @@
 const { pxgrid, pxclient } = require('./pxgrid-setup');
-
 /*
 // Using async/await to easily perform for loop.
 async function main() {
@@ -13,6 +12,9 @@ async function main() {
   for (let i = 0; i < max; i++) {
     console.log(i, Date.now() + ': sending message.');
     publisher.publish({ testAttribute: 'test ' + i });
+    await new Promise(resolve => {
+      setTimeout(resolve, 1000)
+    })
   }
 }
 

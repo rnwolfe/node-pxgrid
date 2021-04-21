@@ -3,12 +3,12 @@ const certs = require('./certs.js');
 const Pxgrid = require('../');
 
 const pxgridControlOptions = {
-  host: 'dnaise.ironbowlab.com',
-  client: 'my-node-app',
+  hosts: ['dnaise.ironbowlab.com'],
+  client: 'node-pxgrid-test',
   clientCert: certs.clientCert,
   clientKey: certs.clientKey,
   caBundle: certs.caBundle,
-  clientKeyPassword: 'Pxgrid123'
+  clientKeyPassword: 'Cisco123'
 };
 
 const pxclient = new Pxgrid.Client(pxgridControlOptions);
