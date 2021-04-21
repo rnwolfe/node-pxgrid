@@ -5,18 +5,23 @@
   "templates": {
     "default": {
       "staticFiles": {
-        "include": ["./assets/docstatic"]
+        "include": []
       }
     }
   },
   "source": {
-    "include": ["./README.md", "./lib"],
+    "include": [
+      "./README.md",
+      "./lib"
+    ],
     "includePattern": ".js$",
     "excludePattern": "(node_modules/|docs)"
   },
-  "plugins": ["plugins/markdown"],
+  "plugins": [
+    "plugins/markdown"
+  ],
   "opts": {
-    "template": "assets/template/docdash/",
+    "template": "./node_modules/docdash",
     "encoding": "utf8",
     "destination": "docs/",
     "recurse": true,

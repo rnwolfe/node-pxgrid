@@ -10,11 +10,12 @@
   },
   "license": "MIT",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint -c .eslintrc.json ./lib/ ./examples/",
+    "lint": "./node_modules/.bin/eslint -c .eslintrc.json ./lib/",
     "docs": "rm -rf ./docs; ./node_modules/.bin/jsdoc -c .jsdoc.json"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
+    "docdash": "^1.2.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-import": "^2.17.2",
