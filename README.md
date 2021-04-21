@@ -50,7 +50,7 @@ certs.clientKey = fs.readFileSync(certs.certPath + 'my-node-app.key');
 certs.caBundle = fs.readFileSync(certs.certPath + 'ise-chain.cer');
 
 const options = {
-  host: 'dnaise.ironbowlab.com',
+  hosts: ['dnaise.ironbowlab.com'],
   client: 'my-node-app',
   clientCert: certs.clientCert,
   clientKey: certs.clientKey,
@@ -84,7 +84,7 @@ certs.clientKey = fs.readFileSync(certs.certPath + 'my-node-app.key');
 certs.caBundle = fs.readFileSync(certs.certPath + 'ise-chain.cer');
 
 const pxgridControlOptions = {
-  host: 'dnaise.ironbowlab.com',
+  hosts: ['dnaise.ironbowlab.com'],
   client: 'my-node-app',
   clientCert: certs.clientCert,
   clientKey: certs.clientKey,
