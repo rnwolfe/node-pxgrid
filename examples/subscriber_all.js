@@ -1,6 +1,6 @@
 const { pxgrid, pxclient } = require('./pxgrid-setup');
 
-const genericCallback = function (message) {
+const genericCallback = function(message) {
   console.log(message.body);
 };
 

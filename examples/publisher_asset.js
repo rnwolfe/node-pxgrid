@@ -10,7 +10,7 @@ const body = {
   assetProductId: 'IE2000',
   assetSerialNumber: '1212121213243',
   assetMacAddress: '11:00:00:00:00:01',
-  assetDeviceType: "My is angry",
+  assetDeviceType: 'This is my device',
   assetIpAddress: '1.2.3.4',
   assetCustomAttributes: [
     {

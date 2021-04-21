@@ -8,8 +8,9 @@ const ancCallback = function(message) {
     } ANC event.`
   );
 
-  pxclient.getAncEndpointByMac(body.macAddress)
-    .then(endpoint => console.log('Endpoint ANC Policies:', endpoint, '\n\n'))
+  pxclient
+    .getAncEndpointByMac(body.macAddress)
+    .then(endpoint => console.log('Endpoint ANC Policies:', endpoint, '\n\n'));
 };
 
 pxclient
