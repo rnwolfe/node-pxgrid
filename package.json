@@ -11,6 +11,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "./node_modules/.bin/eslint -c .eslintrc.json ./lib/ ./examples/",
+    "lint:fix": "./node_modules/.bin/eslint --fix -c .eslintrc.json ./lib/ ./examples/",
     "docs": "rm -rf ./docs; ./node_modules/.bin/jsdoc -c .jsdoc.json"
   },
   "devDependencies": {
